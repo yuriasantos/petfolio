@@ -1,5 +1,12 @@
 class ClinicsController < ApplicationController
 
+  def show
+    #  show clinic
+    #  view clinic.appointment.each do |appointment|
+      # clinic.appointment.datetime
+    # end
+  end
+
   def new
     @clinic = Clinic.new
   end

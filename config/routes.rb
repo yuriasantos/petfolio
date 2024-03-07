@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :pets, only: [:new, :create, :show]
+  resources :appointments, only: [:index]
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
