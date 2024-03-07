@@ -1,1 +1,16 @@
-<h1>pets new</h1>
+<div container-md>
+  <div class="row my-4">
+    <div class="col-3">
+      <h1>New pet</h1>
+
+      <%= simple_form_for([@pet]) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :species %>
+      <%= f.input :breed %>
+      <%= f.input :birth %>
+      <%= f.submit %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
