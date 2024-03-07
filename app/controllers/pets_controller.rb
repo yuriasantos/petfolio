@@ -22,4 +22,8 @@ class PetsController < ApplicationController
     params.require(:pet).permit(:name, :type, :breed, :birth)
   end
 
+  def show
+    @pets = Pet.find(params[:id])
+  end
+
 end
