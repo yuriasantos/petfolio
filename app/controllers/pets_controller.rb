@@ -1,11 +1,11 @@
 class PetsController < ApplicationController
   def new
-    @tutor = Tutor.find(params[:tutor_id])
+    @tutor = Tutor.find_by(user: current_user)
     @pet = Pet.new
   end
 
   def create
-    @tutor = Tutor.find(params[:tutor_id])
+    @tutor = Tutor.find_by(user: current_user)
     @pet = Pet.new(pet_params)
     @pet.tutor = @tutor
 
@@ -19,7 +19,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :type, :breed, :birth)
+    params.require(:pet).permit(:name, :species, :breed, :birth)
   end
 
   def show
