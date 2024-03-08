@@ -1,6 +1,7 @@
 class Vet < ApplicationRecord
   belongs_to :user
   belongs_to :clinic
+  has_many :appointments
 
   SPECIALTIES = ["dermatology", "oncology", "ophthalmology", "clinical pathology"]
 
@@ -14,4 +15,7 @@ class Vet < ApplicationRecord
       errors.add(:specialty, "must be on the list.")
     end
   end
+
+ 
+
 end

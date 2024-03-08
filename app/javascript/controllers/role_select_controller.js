@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// export default class extends Controller {
+export default class extends Controller {
 //   connect() {
 //     this.element.addEventListener("change", () => {
 //       const selectedRole = this.element.value;
@@ -11,4 +11,4 @@ import { Controller } from "@hotwired/stimulus"
 //       }
 //     });
 //   }
-// }
+}
