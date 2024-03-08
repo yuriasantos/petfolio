@@ -12,15 +12,17 @@
     width: 120px;
     object-fit: cover;
   }
+}
 .card {
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 10px;
-  &:hover{ background: $lightgreen;
-  box-shadow: none;
-}
+  &:hover{
+    background: $lightgreen;
+    box-shadow: none;
+  }
 }
 
 .card > img {
