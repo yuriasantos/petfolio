@@ -1,5 +1,22 @@
 class ClinicsController < ApplicationController
 
+  skip_before_action :authenticate_user!, only: :index
+
+  def index
+    if params[:query].present?
+      @clinics = Clinic.search_by_name(params[:query])
+    else
+      @clinics = Clinic.all
+    end
+
+    @markers = @clinics.geocoded.map do |clinic|
+      {
+        lat: clinic.latitude,
+        lng: clinic.longitude
+      }
+    end
+  end
+
   def new
     @clinic = Clinic.new
   end
@@ -13,6 +30,7 @@ class ClinicsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
 
   private
 
