@@ -1,5 +1,9 @@
 class ClinicsController < ApplicationController
 
+  def show
+    @clinic = Clinic.find_by(id: params[:id])
+  end
+
   def new
     @clinic = Clinic.new
   end
