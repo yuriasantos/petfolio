@@ -8,9 +8,8 @@ class PetsController < ApplicationController
     @tutor = Tutor.find_by(user: current_user)
     @pet = Pet.new(pet_params)
     @pet.tutor = @tutor
-
     if @pet.save
-      redirect_to pets_path(@tutor)
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,5 +26,8 @@ class PetsController < ApplicationController
   end
 
 
+  def show
+    @pets = Pet.find(params[:id])
+  end
 
 end
