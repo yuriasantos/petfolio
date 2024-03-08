@@ -5,4 +5,12 @@ class TutorPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
+  def new?
+    create?
+  end
+
+  def create?
+    user.tutor? && Tutor.where(user: user).none?
+  end
 end

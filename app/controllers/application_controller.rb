@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :redirect_user_if_enrollment_incomplete, if: :user_signed_in?
 
   include Pundit::Authorization
 
@@ -17,6 +18,15 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
+  end
+
+  # Checks if user completed his enrollment process
+  def redirect_user_if_enrollment_incomplete
+    if current_user.tutor? && Tutor.where(user: current_user).none?
+      redirect_to new_tutor_path
+    elsif current_user.clinic? && Clinic.where(user: current_user).none?
+      redirect_to new_clinic_path
+    end
   end
 
   private

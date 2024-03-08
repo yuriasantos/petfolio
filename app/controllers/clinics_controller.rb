@@ -1,4 +1,5 @@
 class ClinicsController < ApplicationController
+  skip_before_action :redirect_user_if_enrollment_incomplete, only: %i[new create]
 
   def new
     @clinic = Clinic.new
@@ -21,5 +22,4 @@ class ClinicsController < ApplicationController
   def clinic_params
     params.require(:clinic).permit(:cnpj, :address, :company_name)
   end
-
 end
