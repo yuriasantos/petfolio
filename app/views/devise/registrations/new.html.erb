@@ -23,7 +23,7 @@
                           input_html: { autocomplete: "new-password" } %>
               <%= f.input :role,
                           required: true,
-                          as: :select, collection: ['Clinic', 'Pet Owner'],
+                          as: :select, collection: ['clinic', 'tutor'],
                           input_html: { id: 'role-select', data: { controller: 'role-select' } }
                           %>
             </div>

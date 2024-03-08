@@ -1,0 +1,30 @@
+
+
+<div class="container-md">
+<div class="row my-4">
+
+
+
+<h2 class="text-center">Add a vet to your team</h2>
+</div>
+<div class="row my-4 justify-content-center">
+
+<div class="col-12 col-md-4 form-login">
+
+<%= simple_form_for @vet do |vet_builder| %>
+  <%= vet_builder.input :fullname %>
+  <%= vet_builder.input :crmv %>
+  <%= vet_builder.input :specialty, collection: Vet::SPECIALTIES %>
+
+  <!-- Nested attributes for Post -->
+  <%= vet_builder.simple_fields_for @user do |user_builder| %>
+  <%= user_builder.input :email %>
+  <%= user_builder.input :password %>
+  <% end %>
+
+  <%= vet_builder.submit 'Save', class: ('btn btn-warning') %>
+<% end %>
+</div>
+
+</div>
+</div>

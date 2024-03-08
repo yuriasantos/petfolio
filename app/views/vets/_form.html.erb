@@ -1,0 +1,12 @@
+<%= simple_form_for(vet, user) do |f| %>
+
+  <%= f.input user.email %>
+  <%= f.input user.password %>
+  <%= f.input vet.fullname %>
+  <%= f.input vet.crmv %>
+  <%= f.input vet.specialty, collection: Vet::SPECIALTIES %>
+
+  <div class="actions d-flex justify-content-center"">
+    <%= f.button :submit, class: "btn btn-warning" %>
+  </div>
+<% end %>
