@@ -1,10 +1,7 @@
 class ClinicsController < ApplicationController
 
   def show
-    #  show clinic
-    #  view clinic.appointment.each do |appointment|
-      # clinic.appointment.datetime
-    # end
+    @clinic = Clinic.find_by(id: params[:id])
   end
 
   def new
