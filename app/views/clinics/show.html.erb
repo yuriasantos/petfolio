@@ -1,0 +1,76 @@
+<div>
+  <main class="container">
+    <div class="row mx-2">
+
+      <div class="contaier-md col-md-7 p-1">
+        <div class="row my-4">
+          <div class="col-12">
+            <div class="card-product mb-2 d-flex justify-content-evenly align-items-center" id="clinic-info">
+              <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-thumbnail" alt="clinic-profile-photo">
+              <div class="card-product-infos d-flex flex-column">
+                <h2><%= @clinic.company_name %></h2>
+                <ul>
+                  <li><%= @clinic.address %></li>
+                  <li><%= @clinic.cnpj %></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card mb-2" id="vet-info">
+              <h4>Vets of <%= @clinic.company_name %></h4>
+              <% @clinic.vets.each do |vet| %>
+                <%= vet.fullname %>
+               <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="contaier-md col-md-5 p-1">
+        <div class="row my-4">
+          <div class="col-12">
+            <div class="card m-2">
+              <h2>All Appointments</h2>
+
+              <% @clinic.appointments.each do |appointment| %>
+                <div class="card m-2">
+                  <p>Appointment Date: <%= appointment.datetime.strftime("%m/%d/%Y") %></p>
+                  <ul>Assigned Vet:
+                    <li>Name: <%= appointment.vet.fullname %></li>
+                    <li>Specialty: <%= appointment.vet.specialty %></li>
+                  </ul>
+
+                  <ul>Pet information:
+                    <li>Name: <%= appointment.pet.name %></li>
+                    <li>Species: <%= appointment.pet.species %></li>
+                    <li>Tutor Name:<%= appointment.pet.tutor.fullname %></li>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+
+<%#
+<button type="button" class="collapsible">Open Collapsible</button>
+<div class="content">
+  <p>content here</p>
+</div> %>
+
+
+  <%# <div class="row justify-content-center">
+    <div class="col">
+      <%= form_with url: , method: :get, class: "d-flex" do %>
+        <%# <%= text_field_tag :query, params[:query], class: "search-form-control form-control", placeholder: "Search" %>
+        <%# <%= submit_tag "Search", name: "", class: "btn" %>
+      <%# <% end  %>
+    <%# </div> %>
+  <%# </div> %>
