@@ -5,9 +5,8 @@
   <%= f.input vet.fullname %>
   <%= f.input vet.crmv %>
   <%= f.input vet.specialty, collection: Vet::SPECIALTIES %>
-  <%= f.input vet.photos, as: :file, input_html: { multiple: true }  %>
 
   <div class="actions d-flex justify-content-center"">
-    <%= f.button :submit, class: "btn btn-default btn-primary text-white my-2" %>
+    <%= f.button :submit, class: "btn btn-warning" %>
   </div>
 <% end %>
