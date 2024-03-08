@@ -14,7 +14,11 @@ class ClinicsController < ApplicationController
         lat: clinic.latitude,
         lng: clinic.longitude
       }
-    end
+  end
+
+  def show
+    @clinic = Clinic.find_by(id: params[:id])
+
   end
 
   def new
