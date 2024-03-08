@@ -7,4 +7,16 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def tutor?
+    self.role == 'tutor'
+  end
+
+  def clinic?
+    self.role == 'clinic'
+  end
+
+  def vet?
+    self.role == 'vet'
+  end
 end

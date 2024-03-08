@@ -24,5 +24,4 @@ class PetsController < ApplicationController
   def show
     @pets = Pet.find(params[:id])
   end
-
 end
