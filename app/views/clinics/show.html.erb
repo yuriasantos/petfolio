@@ -5,32 +5,36 @@
       <div class="contaier-md col-md-7 p-1">
         <div class="row my-4">
           <div class="col-12">
+
             <div class="card-product mb-5 d-flex justify-content-evenly align-items-center" id="clinic-card">
               <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-thumbnail" alt="clinic-profile-photo">
               <div class="card-product-infos d-flex flex-column">
-                <h2><%= @clinic.company_name %></h2>
+                <h2><i class="fa-solid fa-hospital"></i>&nbsp; <strong><%= @clinic.company_name %></strong></h2>
                 <ul>
-                  <li><%= @clinic.address %></li>
-                  <li><%= @clinic.cnpj %></li>
+                  <li><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @clinic.address %></li>
+                  <li><i class="fa-solid fa-id-card"></i>&nbsp; <%= @clinic.cnpj %></li>
                 </ul>
               </div>
             </div>
 
             <div class="card mb-2" id="vet-card">
-              <h4>Vets of <%= @clinic.company_name %></h4>
-
-              <% @clinic.vets.each do |vet| %>
-                <div class="card m-2" id="vet-info">
-                  <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-vet" alt="clinic-profile-photo">
-                  <h2>Name:<%= vet.fullname %></h2>
-                  <p>Specialty:<%= vet.specialty %> </p>
-                </div>
-              <% end %>
+              <h4><i class="fa-solid fa-stethoscope"></i>&nbsp; Vets of <%= @clinic.company_name %></h4>
+              <div class="card d-flex flex-row justify-content-evenly">
+                <% @clinic.vets.each do |vet| %>
+                  <%= link_to vets_path(vet), class: "card_link" do %>
+                    <div class="card m-2" id="vet-info">
+                      <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-vet" alt="clinic-profile-photo">
+                      <p><strong><%= vet.fullname %></strong></p>
+                      <p><%= vet.specialty %> </p>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
 
             <div class="d-flex">
               <button class="btn btn-warning me-1"><%= link_to "New Vet", new_vet_path(@vets) %></button>
-              <button class="btn btn-primary ms-1"><%= link_to "New Vet"  %></button>
+              <button class="btn btn-primary ms-1"><%= link_to "Edit Vet"%></button>
             </div>
 
           </div>
@@ -41,42 +45,47 @@
       <div class="contaier-md col-md-5 p-1">
         <div class="row my-4">
           <div class="col-12">
+
             <div class="card m-2" id="apo-card">
               <h2>All Appointments</h2>
 
-
-
-
-              <% @clinic.appointments.each do |appointment| %>
-                <button class="btn btn-success m-1" type="button" data-bs-toggle="collapse" data-bs-target="#appointment-<%=appointment.id %> " aria-expanded="false" aria-controls="collapseExample">
-                  <%= appointment.datetime.strftime("%m/%d/%Y")%> | <%= appointment.pet.name %>
-                </button>
-
-              <div class="collapse" id="appointment-<%=appointment.id %>">
-
-                <div class="content">
-                  <div class="card m-2" id="apo-info">
-                    <p>Appointment Date: <%= appointment.datetime.strftime("%m/%d/%Y") %></p>
-                    <ul>Assigned Vet:
-                      <li>Name: <%= appointment.vet.fullname %></li>
-                      <li>Specialty: <%= appointment.vet.specialty %></li>
-                    </ul>
-
-                    <ul>Pet information:
-                      <li>Name: <%= appointment.pet.name %></li>
-                      <li>Species: <%= appointment.pet.species %></li>
-                      <li>Tutor Name:<%= appointment.pet.tutor.fullname %></li>
-                    </ul>
-                  </div>
-                </div>
-
-
-
+               <div class="width-100 my-2">
+                <%= form_with url: clinic_path(@clinic), method: :get, class: "d-flex" do %>
+                  <%= text_field_tag :query,
+                        params[:query],
+                        class: "form-control",
+                        placeholder: " "
+                  %>
+                  <%= submit_tag "Search", name: "", class: "btn btn-warning" %>
+                <% end %>
               </div>
 
+              <% @clinic_apo.each do |appointment| %>
+                <button class="btn btn-success m-1" type="button" data-bs-toggle="collapse" data-bs-target="#appointment-<%=appointment.id %> " aria-expanded="false" aria-controls="collapseExample">
+                  <i class="fa-solid fa-stethoscope"></i>&nbsp; <%= appointment.vet.fullname.split.first %>&nbsp;
+                  <i class="fa-solid fa-paw"></i>&nbsp; <%= appointment.pet.name %>&nbsp;
+                  <i class="fa-solid fa-calendar-days">&nbsp; </i><%= appointment.datetime.strftime("%m/%d")%>
+
+                </button>
+
+                <div class="collapse" id="appointment-<%=appointment.id %>">
+                  <div class="content">
+                    <div class="card m-2" id="apo-info">
+                      <h4><strong>Appointment Date:</strong> <%= appointment.datetime.strftime("%m/%d/%Y") %></h4>
+                      <ul><strong>Assigned Vet:</strong>
+                        <li>Name: <%= appointment.vet.fullname %></li>
+                        <li>Specialty: <%= appointment.vet.specialty %></li>
+                      </ul>
+
+                      <ul><strong>Pet information:</strong>
+                        <li>Name: <%= appointment.pet.name %></li>
+                        <li>Species: <%= appointment.pet.species %></li>
+                        <li>Tutor Name: <%= appointment.pet.tutor.fullname %></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               <% end %>
-
-
 
             </div>
           </div>
@@ -86,13 +95,3 @@
     </div>
   </main>
 </div>
-
-
-  <%# <div class="row justify-content-center">
-    <div class="col">
-      <%= form_with url: , method: :get, class: "d-flex" do %>
-        <%# <%= text_field_tag :query, params[:query], class: "search-form-control form-control", placeholder: "Search" %>
-        <%# <%= submit_tag "Search", name: "", class: "btn" %>
-      <%# <% end  %>
-    <%# </div> %>
-  <%# </div> %>

@@ -21,6 +21,11 @@ class ClinicsController < ApplicationController
 
   def show
     @clinic = Clinic.find_by(id: params[:id])
+    @clinic_apo = @clinic.appointments
+
+    if params[:query].present?
+      @clinic_apo = @clinic_apo.global_search(params[:query])
+    end
 
   end
 

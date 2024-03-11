@@ -48,9 +48,13 @@
 
 #clinic-card{
 
+  ul{
+    list-style:none;
+  }
+
   .img-thumbnail{
     height: 100%;
-    width: 120px;
+    width: 150px;
     object-fit: cover;
   }
 
@@ -61,6 +65,8 @@
   display: flex;
   justify-content: start;
   padding:20px;
+  min-height: 150px;
+  min-width: 180px;
 
   #vet-info{
     padding: 16px;
@@ -90,9 +96,17 @@
 #apo-card{
   text-align: center;
   padding: 10px;
+  font-size: 24px;
+
+  h2{
+    line-height: 22px;
+    font-size: 18px;
+  }
 
   #apo-info{
     font-size: 16px;
+    text-align: start;
+    padding: 16px;
   }
 
 }
