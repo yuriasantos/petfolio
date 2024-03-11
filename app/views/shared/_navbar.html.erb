@@ -23,10 +23,10 @@
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if current_user.role == 'tutor' && current_user.tutor.photo.present? %>
+            <% if current_user.role == 'tutor' && current_user.tutor&.photo.present? %>
               <%= cl_image_tag current_user.tutor.photo.key, crop: :fill, class: "avatar-large" %>
-            <% elsif current_user.role == 'clinic' && current_user.clinic.photo.present? %>
-              <%= cl_image_tag current_user.clinic.photo.key, crop: :fill, class: "avatar-larger" %>
+            <% elsif current_user.role == 'clinic' && current_user.clinic&.photo.present? %>
+              <%= cl_image_tag current_user.clinic.photo.key, crop: :fill, class: "avatar-large" %>
             <% else %>
               <%= image_tag "https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg", alt: "Standard Image", class: "avatar-large" %>
             <% end %>
