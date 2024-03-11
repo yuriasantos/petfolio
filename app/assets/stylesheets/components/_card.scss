@@ -6,13 +6,6 @@
 }
 
 
-#clinic-info {
-  .img-thumbnail{
-    height: 100%;
-    width: 120px;
-    object-fit: cover;
-  }
-}
 .card {
   overflow: hidden;
   background: white;
@@ -51,4 +44,55 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+}
+
+#clinic-card{
+
+  .img-thumbnail{
+    height: 100%;
+    width: 120px;
+    object-fit: cover;
+  }
+
+}
+
+#vet-card{
+  align-items: center;
+  display: flex;
+  justify-content: start;
+  padding:20px;
+
+  #vet-info{
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: flex-end; */
+    /* position: relative; */
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px;
+    min-height: 100px;
+    width: 80%;
+    align-items: center;
+  }
+
+  .img-vet{
+    height: 150px;
+    width: fit-content;
+    display: flex;
+
+  }
+
+}
+
+#apo-card{
+  text-align: center;
+  padding: 10px;
+
+  #apo-info{
+    font-size: 16px;
+  }
+
 }

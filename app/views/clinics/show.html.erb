@@ -5,7 +5,7 @@
       <div class="contaier-md col-md-7 p-1">
         <div class="row my-4">
           <div class="col-12">
-            <div class="card-product mb-2 d-flex justify-content-evenly align-items-center" id="clinic-info">
+            <div class="card-product mb-5 d-flex justify-content-evenly align-items-center" id="clinic-card">
               <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-thumbnail" alt="clinic-profile-photo">
               <div class="card-product-infos d-flex flex-column">
                 <h2><%= @clinic.company_name %></h2>
@@ -16,11 +16,21 @@
               </div>
             </div>
 
-            <div class="card mb-2" id="vet-info">
+            <div class="card mb-2" id="vet-card">
               <h4>Vets of <%= @clinic.company_name %></h4>
+
               <% @clinic.vets.each do |vet| %>
-                <%= vet.fullname %>
-               <% end %>
+                <div class="card m-2" id="vet-info">
+                  <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-vet" alt="clinic-profile-photo">
+                  <h2>Name:<%= vet.fullname %></h2>
+                  <p>Specialty:<%= vet.specialty %> </p>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="d-flex">
+              <button class="btn btn-warning me-1"><%= link_to "New Vet", new_vet_path(@vets) %></button>
+              <button class="btn btn-primary ms-1"><%= link_to "New Vet"  %></button>
             </div>
 
           </div>
@@ -31,24 +41,43 @@
       <div class="contaier-md col-md-5 p-1">
         <div class="row my-4">
           <div class="col-12">
-            <div class="card m-2">
+            <div class="card m-2" id="apo-card">
               <h2>All Appointments</h2>
 
-              <% @clinic.appointments.each do |appointment| %>
-                <div class="card m-2">
-                  <p>Appointment Date: <%= appointment.datetime.strftime("%m/%d/%Y") %></p>
-                  <ul>Assigned Vet:
-                    <li>Name: <%= appointment.vet.fullname %></li>
-                    <li>Specialty: <%= appointment.vet.specialty %></li>
-                  </ul>
 
-                  <ul>Pet information:
-                    <li>Name: <%= appointment.pet.name %></li>
-                    <li>Species: <%= appointment.pet.species %></li>
-                    <li>Tutor Name:<%= appointment.pet.tutor.fullname %></li>
-                  </ul>
+
+
+              <% @clinic.appointments.each do |appointment| %>
+                <button class="btn btn-success m-1" type="button" data-bs-toggle="collapse" data-bs-target="#appointment-<%=appointment.id %> " aria-expanded="false" aria-controls="collapseExample">
+                  <%= appointment.datetime.strftime("%m/%d/%Y")%> | <%= appointment.pet.name %>
+                </button>
+
+              <div class="collapse" id="appointment-<%=appointment.id %>">
+
+                <div class="content">
+                  <div class="card m-2" id="apo-info">
+                    <p>Appointment Date: <%= appointment.datetime.strftime("%m/%d/%Y") %></p>
+                    <ul>Assigned Vet:
+                      <li>Name: <%= appointment.vet.fullname %></li>
+                      <li>Specialty: <%= appointment.vet.specialty %></li>
+                    </ul>
+
+                    <ul>Pet information:
+                      <li>Name: <%= appointment.pet.name %></li>
+                      <li>Species: <%= appointment.pet.species %></li>
+                      <li>Tutor Name:<%= appointment.pet.tutor.fullname %></li>
+                    </ul>
+                  </div>
                 </div>
+
+
+
+              </div>
+
               <% end %>
+
+
+
             </div>
           </div>
         </div>
@@ -57,13 +86,6 @@
     </div>
   </main>
 </div>
-
-
-<%#
-<button type="button" class="collapsible">Open Collapsible</button>
-<div class="content">
-  <p>content here</p>
-</div> %>
 
 
   <%# <div class="row justify-content-center">
