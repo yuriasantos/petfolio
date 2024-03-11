@@ -1,0 +1,32 @@
+.bn31 {
+  background-image: linear-gradient(to right, #99eea8 0%, #94eabc 100%);
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: $darkgreen-text;
+  height: 30px;
+  font-size: 1em;
+  padding: 1px;
+  position: relative;
+  text-decoration: none;
+  width: 7em;
+  z-index: 2;
+}
+
+.bn31:hover {
+  color: #fff;
+}
+
+.bn31 .bn31span {
+  align-items: center;
+  background: $orange-btn;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background 0.5s ease;
+  width: 100%;
+}
+
+.bn31:hover .bn31span {
+  background: transparent;
+}

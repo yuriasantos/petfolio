@@ -16,7 +16,7 @@ class PetsController < ApplicationController
   end
 
   def show
-    @pets = Pet.find(params[:id])
+    @pet = Pet.find(params[:id])
   end
 
   private
@@ -25,9 +25,5 @@ class PetsController < ApplicationController
     params.require(:pet).permit(:name, :species, :breed, :birth)
   end
 
-
-  def show
-    @pets = Pet.find(params[:id])
-  end
 
 end

@@ -13,4 +13,9 @@ class TutorPolicy < ApplicationPolicy
   def create?
     user.tutor? && Tutor.where(user: user).none?
   end
+
+  def show?
+    true
+  end
+
 end
