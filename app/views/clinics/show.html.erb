@@ -6,7 +6,8 @@
         <div class="row my-4">
           <div class="col-12">
             <div class="card-product mb-2 d-flex justify-content-evenly align-items-center" id="clinic-info">
-              <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-thumbnail" alt="clinic-profile-photo">
+              <%# <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-thumbnail" alt="clinic-profile-photo"> %>
+              <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill, class: 'img-thumbnail' %>
               <div class="card-product-infos d-flex flex-column">
                 <h2><%= @clinic.company_name %></h2>
                 <ul>

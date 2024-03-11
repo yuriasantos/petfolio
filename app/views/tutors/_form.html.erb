@@ -1,5 +1,6 @@
 <%= simple_form_for tutor do |f| %>
   <%= f.input :fullname, placeholder: 'John Smith' %>
   <%= f.input :address, placeholder: '123 Main Street' %>
+  <%= f.input :photo, as: :file %>
   <%= f.button :submit , class: ('btn btn-warning') %>
 <% end %>

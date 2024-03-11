@@ -12,6 +12,7 @@ class Clinic < ApplicationRecord
   belongs_to :user
   has_many :vets
   has_many :appointments, through: :vets
+  has_one_attached :photo
 
   validates :cnpj, :company_name, :address, presence: true
 
