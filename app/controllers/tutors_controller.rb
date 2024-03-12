@@ -24,6 +24,6 @@ class TutorsController < ApplicationController
   private
 
   def tutor_params
-    params.require(:tutor).permit(:fullname, :address)
+    params.require(:tutor).permit(:fullname, :address, :photo)
   end
 end

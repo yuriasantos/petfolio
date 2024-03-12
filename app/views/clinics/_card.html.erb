@@ -1,6 +1,10 @@
 <div class="card h-100">
   <!-- Clinic Image -->
-  <img src="https://images1-fabric.practo.com/practices/682794/pet-s-heaven-pet-clinic-pune-601968fd6f9dc.jpg" class="card-img-top" alt="Clinic Image">
+  <% if clinic.photo.present? %>
+   <%= cl_image_tag clinic.photo.key, crop: :fill, class: "card-img-top" %>
+  <% else %>
+    <img src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg" class="card-img-top" alt="Clinic Image">
+  <% end %>
   <div class="card-body">
     <!-- Clinic Information -->
     <h5 class="card-title"><%= clinic.company_name %></h5>

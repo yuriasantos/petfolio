@@ -21,6 +21,11 @@ class ClinicsController < ApplicationController
 
   def show
     @clinic = Clinic.find_by(id: params[:id])
+    @clinic_apo = @clinic.appointments
+
+    if params[:query].present?
+      @clinic_apo = @clinic_apo.global_search(params[:query])
+    end
 
   end
 
@@ -44,6 +49,6 @@ class ClinicsController < ApplicationController
   private
 
   def clinic_params
-    params.require(:clinic).permit(:cnpj, :address, :company_name)
+    params.require(:clinic).permit(:cnpj, :address, :company_name, :photo)
   end
 end
