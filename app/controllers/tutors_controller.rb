@@ -11,7 +11,7 @@ class TutorsController < ApplicationController
     @tutor.user = current_user
     authorize @tutor
     if @tutor.save
-      redirect_to root_path
+      redirect_to tutor_path(@tutor)
     else
       render :new, status: :unprocessable_entity
     end

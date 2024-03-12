@@ -7,7 +7,11 @@
           <div class="col-12">
             <div class="card-product mb-2 d-flex justify-content-evenly align-items-center" id="clinic-info">
               <%# <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-thumbnail" alt="clinic-profile-photo"> %>
-              <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill, class: 'img-thumbnail' %>
+                <% if @clinic.photo.present? %>
+                  <%= cl_image_tag @clinic.photo.key, crop: :fill, height: 300, width: 300, class: "img-profile-sq" %>
+                <% else %>
+                  <img src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg" class="img-profile-sq" alt="Clinic Image">
+                <% end %>
               <div class="card-product-infos d-flex flex-column">
                 <h2><i class="fa-solid fa-hospital"></i>&nbsp; <strong><%= @clinic.company_name %></strong></h2>
                 <ul>
