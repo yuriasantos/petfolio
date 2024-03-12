@@ -42,6 +42,7 @@ carla = User.new(email: "carla@clinic.com", password:'carla123', role: 'clinic' 
 carla.save!
 
 fernando = User.new(email: 'fernando@vet.com', password:'fernando123', role: 'vet')
+fernando.save!
 
 puts 'Creating Tutors...'
 
@@ -94,8 +95,8 @@ lupo = Pet.new(name: 'Lupo', species: 'dog', breed: 'galgo', birth: Date.today -
 lupo.photo.attach(io: file, filename: "lupo.png", content_type: "image/png")
 lupo.save!
 
-fernando_vet = Vet.new(fullname: 'Fernando da Silva', crmv: '39483743638', user_id: fernando.id, clinic_id: andre_clinic.id)
-
+fernando_vet = Vet.new(fullname: 'Fernando da Silva', crmv: '39483743638', user_id: fernando.id, specialty: 'dermatology', clinic_id: andre_clinic.id)
+fernando_vet.save!
 
 
 
