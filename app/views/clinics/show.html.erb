@@ -2,7 +2,7 @@
   <main class="container">
     <div class="row mx-2">
 
-      <div class="contaier-md col-md-7 p-1">
+      <div class="contaier-md col-md-8 col-lg-7 p-1">
         <div class="row my-4">
           <div class="col-12">
             <div class="card-product mb-2 d-flex justify-content-evenly align-items-center" id="clinic-info">
@@ -23,9 +23,9 @@
 
             <div class="card mb-2" id="vet-card">
               <h4><i class="fa-solid fa-stethoscope"></i>&nbsp; Vets of <%= @clinic.company_name %></h4>
-              <div class="card d-flex flex-row justify-content-evenly">
+              <div class="card d-flex flex-row justify-content-evenly flex-wrap">
                 <% @clinic.vets.each do |vet| %>
-                  <%= link_to vets_path(vet), class: "card_link" do %>
+                  <%= link_to vet, class: "card_link" do %>
                     <div class="card m-2" id="vet-info">
                       <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-vet" alt="clinic-profile-photo">
                       <p><strong><%= vet.fullname %></strong></p>
@@ -46,7 +46,7 @@
       </div>
 
 
-      <div class="contaier-md col-md-5 p-1">
+      <div class="container-md col-md-4 col-lg-5 p-1">
         <div class="row my-4">
           <div class="col-12">
             <% unless current_user.tutor %>
