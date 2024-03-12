@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :pets, only: [:new, :create, :show]
   resources :clinics, only: [:new, :create, :index, :show]
   resources :tutors, only: [:new, :create, :show]
-  resources :vets, only: [:new, :create]
+  resources :vets, only: [:new, :create, :show]
   resources :appointments, only: [:index]
-
 end

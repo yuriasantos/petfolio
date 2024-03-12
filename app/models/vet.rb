@@ -8,6 +8,10 @@ class Vet < ApplicationRecord
   validates :fullname, :crmv, :specialty, presence: true
   validate :specialty_must_be_in_list
 
+  def email
+    self.user.email
+  end
+
   private
 
   def specialty_must_be_in_list
@@ -15,7 +19,4 @@ class Vet < ApplicationRecord
       errors.add(:specialty, "must be on the list.")
     end
   end
-
- 
-
 end
