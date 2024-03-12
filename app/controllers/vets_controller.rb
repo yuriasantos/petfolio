@@ -24,6 +24,10 @@ class VetsController < ApplicationController
     end
   end
 
+  def show
+    @vet = Vet.find(params[:id])
+  end
+
   private
 
   def vet_params
