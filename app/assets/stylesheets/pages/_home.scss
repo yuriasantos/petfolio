@@ -1,1 +1,88 @@
-// Specific CSS for your home-page
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.logo-text {
+  font-family: $logo-font;
+}
+
+.section-paws {
+  min-height: 100vh;
+  h2 {
+    font-weight: 800;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+.dotted-card {
+  background-color: $lightgreen;
+  border: 0.3rem dotted;
+  margin: 0 auto;
+  i {
+    color: $green-btn;
+  }
+  h3 {
+    font-weight: 700;
+  }
+}
+
+.section-testimonials {
+  position: absolute;
+  background-color: white;
+  width: 100vw;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.testimonial-card {
+
+  margin: 0 3rem;
+  .testimonial-title {
+    color: $orange-btn;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
+}
+
+
+.testimonial-user {
+  padding-top: 0.5rem;
+  .user-img-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 3px solid;
+    border-radius: 50%;
+  }
+  i {
+    padding: 0.3rem;
+    font-size: 1.5rem;
+  }
+  p {
+    margin: 0 0 0 0.5rem;
+    font-size: small;
+    line-height: 100%;
+  }
+}
