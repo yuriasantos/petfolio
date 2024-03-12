@@ -9,14 +9,20 @@ class PetsController < ApplicationController
     @pet = Pet.new(pet_params)
     @pet.tutor = @tutor
     if @pet.save
-      redirect_to root_path
+      redirect_to tutor_path(@tutor)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    @pets = Pet.find(params[:id])
+    @pet = Pet.find(params[:id])
+    @pet_apo = @pet.appointments
+
+    if params[:query].present?
+      @pet_apo = @pet_apo.global_search(params[:query])
+    end
+    
   end
 
   private

@@ -11,17 +11,12 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <%# <img src="https://scontent.fsdu8-1.fna.fbcdn.net/v/t1.6435-9/41890355_1502840383148987_8227935292091269120_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=bVpw3Tr5-YQAX_4u6so&_nc_ht=scontent.fsdu8-1.fna&oh=00_AfCXs07TIN_Xqj9pqvUUV7d0MXyvKIwfz44GLropsTtYoA&oe=6612E3A1" alt="Admin" class="rounded-circle" width="150"> %>
-              <% if @tutor.photo.present? %>
-                <%= cl_image_tag @tutor.photo.key, crop: :fill, height: 150, width: 150, class: "profile-rounded" %>
-              <% else %>
-                <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
-              <% end %>
+              <img src="https://ca.slack-edge.com/T02NE0241-U06DHS3P0CR-6759c5fa17f9-512" alt="Admin" class="rounded-circle" width="150">
               <div class="mt-3">
                 <h4><%= @tutor.fullname %></h4>
-                <p class="text-muted font-size-sm"><%= @tutor.user %></p>
-                <p class="text-muted font-size-sm"><%= @tutor.address %></p>
-                <button class="btn btn-rounded btn-outline-primary">Message</button>
+
+                <p class="text-muted font-size-sm p-2"><%= @tutor.address %></p>
+                <button class="btn btn-primary"> <%= link_to "Create a Pet Profile", new_pet_path %></button>
               </div>
             </div>
           </div>
@@ -50,15 +45,6 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Mobile</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                (320) 380-4539
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
                 <h6 class="mb-0">Address</h6>
               </div>
               <div class="col-sm-9 text-secondary">
@@ -67,9 +53,16 @@
             </div>
             <hr>
             <div class="row">
-              <div class="col-sm-12">
-                <a class="btn btn-info btn-rounded " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mobile</h6>
               </div>
+              <div class="col-sm-9 text-secondary">
+                (320) 380-4539
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+
             </div>
           </div>
         </div>
@@ -96,12 +89,15 @@
                     <h4><%= pet.name %></h4>
                     <p class="text-muted text-capitalize"><%= pet.species %> <span> </p>
                   </div>
-                  <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light"><%= link_to "Profile", pet_path(pet) %></button>
+                  <button type="button" class="btn btn-warning mt-3 waves-effect w-md waves-light"><%= link_to "Appointments", pet_path(pet.id) %></button>
                 </div>
               </div>
-             <% end %>
-           </div>
+            </div>
+        <% end %>
 
+        <div class="col-sm-12">
+          <a class="btn btn-primary " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills"><%= link_to  %></a>
+      </div>
       </div>
     </div>
   </div>
