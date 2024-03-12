@@ -49,7 +49,7 @@
       <div class="contaier-md col-md-5 p-1">
         <div class="row my-4">
           <div class="col-12">
-
+            <% unless current_user.tutor %>
             <div class="card m-2" id="apo-card">
               <h2>All Appointments</h2>
 
@@ -92,8 +92,12 @@
               <% end %>
 
             </div>
+            <% end %>
           </div>
         </div>
+        <% if current_user.tutor? %>
+          <%= link_to 'New Appointment', new_clinic_appointment_path(@clinic), class: 'btn btn-warning' %>
+        <% end %>
       </div>
 
     </div>
