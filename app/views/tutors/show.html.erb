@@ -72,13 +72,18 @@
 
     <h1 class="d-flex justify-content-center p-4">My Pets</h1>
 
-    <div class="content">
+    <div class="container">
       <div class="row justify-content-center">
         <% @tutor.pets.each do |pet| %>
           <div class="col-md-4">
               <div class="text-center card-box">
                 <div class="member-card pt-2 pb-2 ">
-                  <div class="thumb-lg member-thumb mx-auto"><img src="https://fotos.amomeupet.org/uploads/fotos/1608123513_5fda04796451e_hd.jpeg" class="rounded-circle img-thumbnail" alt="profile-image">
+                  <% if pet.photo.present? %>
+                    <%= cl_image_tag(pet.photo.key, class: 'profile-rounded')%>
+                  <% else %>
+                    <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
+                  <% end %>
+                  <%# <div class="thumb-lg member-thumb mx-auto"><img src="https://fotos.amomeupet.org/uploads/fotos/1608123513_5fda04796451e_hd.jpeg" class="rounded-circle img-thumbnail" alt="profile-image"> %>
                   </div>
                   <div class="">
                     <h4><%= pet.name %></h4>
@@ -92,8 +97,7 @@
 
         <div class="col-sm-12">
           <a class="btn btn-primary " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills"><%= link_to  %></a>
-        </div>
-
+      </div>
       </div>
     </div>
   </div>

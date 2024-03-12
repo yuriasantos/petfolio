@@ -39,7 +39,7 @@ class ClinicsController < ApplicationController
     @clinic.user = current_user
     authorize @clinic
     if @clinic.save
-      redirect_to root_path
+      redirect_to clinic_path(@clinic)
     else
       render :new, status: :unprocessable_entity
     end

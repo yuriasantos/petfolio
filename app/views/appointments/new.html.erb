@@ -1,0 +1,10 @@
+<div class="container-md">
+  <div class="row my-4 justify-content-center">
+    <div class="col-12 col-md-4">
+      <div class="form-login">
+        <h2>New Appointment:</h2>
+        <%= render 'form', clinic: Clinic.find(params[:clinic_id]) %>
+      </div>
+    </div>
+  </div>
+</div>
