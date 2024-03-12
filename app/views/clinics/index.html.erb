@@ -17,7 +17,7 @@
       <div class="row row-cols-1 row-cols-md-2 my-4">
         <% @clinics.each do |clinic| %>
           <div class="col mb-4">
-            <%= link_to clinics_path do%>
+            <%= link_to clinic_path(clinic) do%>
               <%= render 'card', clinic: clinic %>
             <% end %>
           </div>

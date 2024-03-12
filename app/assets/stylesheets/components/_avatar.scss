@@ -7,6 +7,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .avatar-bordered {
   width: 40px;
@@ -27,8 +28,9 @@
   width: 300px;
 }
 
-profile-rounded {
-  height: 100px;
-  width: 100px;
+.profile-rounded {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
