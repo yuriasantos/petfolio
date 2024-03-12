@@ -14,7 +14,7 @@ class VetsController < ApplicationController
     if @user.save
       fill_new_vet
       if @vet.save
-        redirect_to @vet.clinic
+        redirect_to clinic_path(@vet.clinic)
       else
         User.delete(@user)
         render :new, status: :unprocessable_entity

@@ -4,6 +4,8 @@ class Appointment < ApplicationRecord
   has_one :record
   has_one :review
 
+  validates :datetime, presence: true
+
   include PgSearch::Model
   pg_search_scope :global_search,
     against: [ :datetime ],
