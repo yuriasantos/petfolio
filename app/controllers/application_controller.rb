@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :redirect_user_if_enrollment_incomplete, if: :user_signed_in?
+  # before_action :redirect_sign_in, if: :user_signed_in?
 
   include Pundit::Authorization
 
@@ -26,6 +27,16 @@ class ApplicationController < ActionController::Base
       redirect_to new_tutor_path
     elsif current_user.clinic? && Clinic.where(user: current_user).none?
       redirect_to new_clinic_path
+    end
+  end
+
+  def after_sign_in_path_for(resource)
+    if current_user.clinic?
+      clinic_path(current_user.clinic)
+    elsif current_user.tutor?
+      tutor_path(current_user.tutor)
+    elsif current_user.vet?
+      vet_path(current_user.vet)
     end
   end
 
