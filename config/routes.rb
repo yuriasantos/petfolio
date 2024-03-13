@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   end
   resources :tutors, only: [:new, :create, :show]
   resources :vets, only: [:new, :create, :show]
-  resources :appointments, only: [:index]
+  resources :appointments, only: [:index] do
+    resources :reviews, only: [:new, :create]
+  end
 end

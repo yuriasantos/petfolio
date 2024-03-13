@@ -62,6 +62,20 @@
                       </div>
                     </div>
                   </div>
+                  <% if !appointment.review && appointment.date_in_past? %>
+                    <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#review-form-<%= appointment.id %>" aria-expanded="false" aria-controls="review-form-<%= appointment.id %>">
+                         Submit Review
+                    </button>
+                    <div class="collapse" id="review-form-<%= appointment.id %>">
+                      <div class="content">
+                        <div class="card m-2" >
+                         <div class="form-group mx-3">
+                          <%= render 'reviews/form', review: Review.new(appointment_id: appointment.id), appointment: Appointment.find(appointment.id) %>
+                         </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
                 <% end %>
           </div>
             </div>
