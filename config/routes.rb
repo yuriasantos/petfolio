@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :pets, only: [:new, :create, :show]
-  resources :clinics, only: [:new, :create, :index, :show] do
+  resources :clinics, only: [:new, :create, :index, :show, :edit, :update] do
     resources :appointments, only: [:new, :create]
   end
   resources :tutors, only: [:new, :create, :show]
-  resources :vets, only: [:new, :create, :show]
+  resources :vets
   resources :appointments, only: [:index]
 end
