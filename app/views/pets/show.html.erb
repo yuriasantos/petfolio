@@ -11,7 +11,11 @@
             <div class="card" style="width:40rem">
               <div class="card-body">
                 <div class="d-flex justify-content-evenly">
-                  <img src="https://fotos.amomeupet.org/uploads/fotos/1608123513_5fda04796451e_hd.jpeg" alt="Admin" class="rounded-circle h-100" width="100">
+                  <% if @pet.photo.present? %>
+                    <%= cl_image_tag(@pet.photo.key, class: 'profile-rounded')%>
+                  <% else %>
+                    <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
+                  <% end %>
                   <div class="justify-content-center text-capitalize mt-3 p-1">
                     <h4>Name: <%= @pet.name %></h4>
                     <p class="mb-1">Species: <%= @pet.species %></p>
@@ -58,6 +62,10 @@
                         <ul><strong>Assigned Vet:</strong>
                           <li>Name: <%= appointment.vet.fullname %></li>
                           <li>Specialty: <%= appointment.vet.specialty %></li>
+                        </ul>
+                        <ul><strong>Clinic information:</strong>
+                          <li>Name: <%= appointment.vet.clinic.company_name %></li>
+                          <li>Address: <%= appointment.vet.clinic.address %></li>
                         </ul>
                       </div>
                     </div>
