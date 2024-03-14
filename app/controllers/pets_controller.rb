@@ -1,6 +1,9 @@
 class PetsController < ApplicationController
 
 
+  before_action :set_pet, only: %i[show destroy edit update]
+
+
   def create
     @tutor = Tutor.find_by(user: current_user)
     @pet = Pet.new(pet_params)
@@ -13,16 +16,39 @@ class PetsController < ApplicationController
   end
 
   def show
-    @pet = Pet.find(params[:id])
     @pet_apo = @pet.appointments
+    @appointment = Appointment.new
+    @review = Review.new
 
     if params[:query].present?
       @pet_apo = @pet_apo.global_search(params[:query])
     end
 
+
+  end
+
+  def destroy
+    @pet.destroy
+    redirect_to tutor_path(@pet.tutor), notice: "#{@pet.name} was deleted."
+  end
+
+  def edit
+  end
+
+  def update
+    if @pet.update(pet_params)
+      redirect_to pet_path(@pet), notice: "Updated!"
+    else
+      render :show, status: :unprocessable_entity
+    end
+
   end
 
   private
+
+  def set_pet
+    @pet = Pet.find(params[:id])
+  end
 
   def pet_params
     params.require(:pet).permit(:name, :species, :breed, :birth, :photo)

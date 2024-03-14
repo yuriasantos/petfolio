@@ -1,0 +1,5 @@
+<%= simple_form_for([appointment, review]) do |f| %>
+  <%= f.input :content %>
+  <%= f.input :clinic_rating, collection: [1,2,3,4,5]%>
+  <%= f.button :submit, class: ('btn btn-warning mb-2') %>
+<% end %>

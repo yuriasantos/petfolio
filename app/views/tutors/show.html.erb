@@ -53,6 +53,7 @@
 
                   </div>
                 </div>
+
               </div>
 
             </div>
@@ -78,7 +79,8 @@
               <h4><%= pet.name %></h4>
               <p class="text-capitalize"><%= pet.species %> <span> </p>
             </div>
-        <button type="button" class="btn btn-primary mt-3 waves-effect w-md waves-light"><%= link_to "Appointments", pet_path(pet.id) %></button>
+            <button type="button" class="btn btn-primary mt-3 waves-effect w-md waves-light"><%= link_to "Appointments", pet_path(pet.id) %></button>
+            <p><%= link_to "Delete Pet", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Do yo delete him/her?"} %></p>
           </div>
         </div>
       </div>

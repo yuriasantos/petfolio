@@ -1,4 +1,7 @@
 class VetsController < ApplicationController
+
+  before_action :set_vet, only: %i[show destroy edit update]
+
   def new
     @vet = Vet.new
     @user = User.new
@@ -25,10 +28,29 @@ class VetsController < ApplicationController
   end
 
   def show
-    @vet = Vet.find(params[:id])
+  end
+
+  def destroy
+    @vet.destroy
+    redirect_to clinic_path(@vet.clinic), notice: "#{@vet.fullname} was deleted."
+  end
+
+  def edit
+  end
+
+  def update
+    if @vet.update(vet_params)
+      redirect_to vet_path(@vet), notice: "Updated!"
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
+
+  def set_vet
+    @vet = Vet.find(params[:id])
+  end
 
   def vet_params
     params.require(:vet).permit(:fullname, :crmv, :specialty, user: %i[email password])

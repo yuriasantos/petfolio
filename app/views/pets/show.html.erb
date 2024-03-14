@@ -11,7 +11,11 @@
             <div class="card" style="width:40rem">
               <div class="card-body">
                 <div class="d-flex justify-content-evenly">
-                  <img src="https://fotos.amomeupet.org/uploads/fotos/1608123513_5fda04796451e_hd.jpeg" alt="Admin" class="rounded-circle h-100" width="100">
+                  <% if @pet.photo.present? %>
+                    <%= cl_image_tag(@pet.photo.key, class: 'profile-rounded')%>
+                  <% else %>
+                    <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
+                  <% end %>
                   <div class="justify-content-center text-capitalize mt-3 p-1">
                     <h4>Name: <%= @pet.name %></h4>
                     <p class="mb-1">Species: <%= @pet.species %></p>
@@ -21,6 +25,12 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+
+            <div>
+             <%= render 'edit_pet', pet: @pet %>
+            <%# Must Check! %>
             </div>
 
 
@@ -59,9 +69,27 @@
                           <li>Name: <%= appointment.vet.fullname %></li>
                           <li>Specialty: <%= appointment.vet.specialty %></li>
                         </ul>
+                        <ul><strong>Clinic information:</strong>
+                          <li>Name: <%= appointment.vet.clinic.company_name %></li>
+                          <li>Address: <%= appointment.vet.clinic.address %></li>
+                        </ul>
                       </div>
                     </div>
                   </div>
+                  <% if !appointment.review && appointment.date_in_past? %>
+                    <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#review-form-<%= appointment.id %>" aria-expanded="false" aria-controls="review-form-<%= appointment.id %>">
+                         Submit Review
+                    </button>
+                    <div class="collapse" id="review-form-<%= appointment.id %>">
+                      <div class="content">
+                        <div class="card m-2" >
+                         <div class="form-group mx-3">
+                          <%= render 'reviews/form', review: Review.new(appointment_id: appointment.id), appointment: Appointment.find(appointment.id) %>
+                         </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
                 <% end %>
           </div>
             </div>

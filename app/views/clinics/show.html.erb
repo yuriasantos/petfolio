@@ -18,6 +18,9 @@
                   <li><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @clinic.address %></li>
                   <li><i class="fa-solid fa-id-card"></i>&nbsp; <%= @clinic.cnpj %></li>
                 </ul>
+
+                <%= render 'edit_clinic', clinic: @clinic %>
+                <%# must check! %>
               </div>
             </div>
 
@@ -30,6 +33,8 @@
                       <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-vet" alt="clinic-profile-photo">
                       <p><strong><%= vet.fullname %></strong></p>
                       <p><%= vet.specialty %> </p>
+                      <p><%= link_to "Delete Vet", vet_path(vet), data: {turbo_method: :delete, turbo_confirm: "Do you delete him/her?"} %></p>
+
                     </div>
                   <% end %>
                 <% end %>
@@ -47,52 +52,7 @@
 
       <div class="container-md col-md-4 col-lg-5 p-1">
         <div class="row my-4">
-          <div class="col-12">
-            <% unless current_user.tutor %>
-            <div class="card m-2" id="apo-card">
-              <h2>All Appointments</h2>
-
-               <div class="width-100 my-2">
-                <%= form_with url: clinic_path(@clinic), method: :get, class: "d-flex" do %>
-                  <%= text_field_tag :query,
-                        params[:query],
-                        class: "form-control",
-                        placeholder: " "
-                  %>
-                  <%= submit_tag "Search", name: "", class: "btn btn-warning" %>
-                <% end %>
-              </div>
-
-              <% @clinic_apo.each do |appointment| %>
-                <button class="btn btn-success m-1" type="button" data-bs-toggle="collapse" data-bs-target="#appointment-<%=appointment.id %> " aria-expanded="false" aria-controls="collapseExample">
-                  <i class="fa-solid fa-stethoscope"></i>&nbsp; <%= appointment.vet.fullname.split.first %>&nbsp;
-                  <i class="fa-solid fa-paw"></i>&nbsp; <%= appointment.pet.name %>&nbsp;
-                  <i class="fa-solid fa-calendar-days">&nbsp; </i><%= appointment.datetime.strftime("%m/%d")%>
-
-                </button>
-
-                <div class="collapse" id="appointment-<%=appointment.id %>">
-                  <div class="content">
-                    <div class="card m-2" id="apo-info">
-                      <h4><strong>Appointment Date:</strong> <%= appointment.datetime.strftime("%m/%d/%Y") %></h4>
-                      <ul><strong>Assigned Vet:</strong>
-                        <li>Name: <%= appointment.vet.fullname %></li>
-                        <li>Specialty: <%= appointment.vet.specialty %></li>
-                      </ul>
-
-                      <ul><strong>Pet information:</strong>
-                        <li>Name: <%= appointment.pet.name %></li>
-                        <li>Species: <%= appointment.pet.species %></li>
-                        <li>Tutor Name: <%= appointment.pet.tutor.fullname %></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-
-            </div>
-            <% end %>
-          </div>
+          <%= render 'clinic_apo', clinic: @clinic, clinic_apo_old: @clinic_apo_old, clinic_apo_new: @clinic_apo_new %>
         </div>
         <% if current_user.tutor? %>
           <%= link_to 'New Appointment', new_clinic_appointment_path(@clinic), class: 'btn btn-warning' %>
