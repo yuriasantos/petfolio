@@ -19,6 +19,7 @@ class TutorsController < ApplicationController
   end
 
   def show
+    @pet = Pet.new
   end
 
   def edit
@@ -33,6 +34,7 @@ class TutorsController < ApplicationController
         locals: {tutor: @tutor}, formats: [:html]
       }
     end
+
   end
 
   private

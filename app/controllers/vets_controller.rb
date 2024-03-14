@@ -2,12 +2,7 @@ class VetsController < ApplicationController
 
   before_action :set_vet, only: %i[show destroy edit update]
 
-  def new
-    @vet = Vet.new
-    @user = User.new
-    @vet.clinic = Clinic.find_by(user: current_user)
-    authorize @vet
-  end
+
 
   def create
     @user = User.new(user_params)
