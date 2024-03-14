@@ -5,9 +5,9 @@
         <%= render 'profile_card', vet: @vet %>
       </div>
       <div class="row my-4" id="calendar-row">
-        <div class="calendar-container" data-controller="calendar">
+        <div class="calendar-container" data-controller="calendar" data-calendar-vets-appointments-value="<%= @vet_appointments %>">
             <header class="calendar-header">
-                <p class="calendar-current-date" data-calendar-target="currdate"></p>
+                <p class="calendar-current-date" data-calendar-target="currDate"></p>
                 <div class="calendar-navigation">
                     <span id="calendar-prev"
                           class="material-symbols-rounded">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="col-12 col-md-5 col-lg-5">
-      <div class="consultations-container">
+      <div class="consultations-container" data-calendar-target="insertAppointments">
 
       </div>
     </div>

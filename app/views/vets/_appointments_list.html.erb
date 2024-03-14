@@ -1,0 +1,12 @@
+<ul>
+  <% vet_appointments.each do |appointment| %>
+    <li><%= appointment.pet.name %></li>
+    <%# <% appointment.pet %>
+    <%= simple_form_for([appointment,record]) do |f| %>
+      <%= f.input :content %>
+      <div class="actions d-flex justify-content-center"">
+        <%= f.button :submit, class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  <% end %>
+</ul>

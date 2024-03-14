@@ -27,6 +27,17 @@ class VetsController < ApplicationController
   def show
     @vet = Vet.find(params[:id])
     authorize @vet
+    @vet_appointments = @vet.appointments.map do |appointment|
+      appointment.datetime.to_date.to_s
+    end
+  end
+
+  def appointments_list
+    @vet = Vet.find(params[:id])
+    @record = Record.new
+    respond_to do |format|
+      format.text { render partial: "vets/appointments_list", locals: { vet_appointments: @vet.appointments, record: @record}, formats: [:html] }
+    end
   end
 
   private
