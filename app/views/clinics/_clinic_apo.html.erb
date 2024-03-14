@@ -71,6 +71,14 @@
                   <li>Species: <%= appointment.pet.species %></li>
                   <li>Tutor Name: <%= appointment.pet.tutor.fullname %></li>
                 </ul>
+                <% if appointment.review %>
+                    <div>
+                      <ul><strong>Client review:</strong>
+                        <li><%= appointment.review.content %></li>
+                        <li>Rating: <%= appointment.review.clinic_rating %></li>
+                      </ul>
+                    </div>
+                  <% end %>
               </div>
             </div>
           </div>
