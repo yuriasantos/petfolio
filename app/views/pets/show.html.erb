@@ -8,31 +8,22 @@
       </ol>
     </nav>
       <div class="d-flex justify-content-center">
-            <div class="card" style="width:40rem">
-              <div class="card-body">
-                <div class="d-flex justify-content-evenly">
-                  <% if @pet.photo.present? %>
-                    <%= cl_image_tag(@pet.photo.key, class: 'profile-rounded')%>
-                  <% else %>
-                    <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
-                  <% end %>
-                  <div class="justify-content-center text-capitalize mt-3 p-1">
-                    <h4>Name: <%= @pet.name %></h4>
-                    <p class="mb-1">Species: <%= @pet.species %></p>
-                    <p class="font-size-sm p-1">Breed: <%= @pet.breed %></p>
-                    <p class="font-size-sm p-1">Birth: <%= @pet.birth %></p>
-                    <button class="btn btn-primary btn-rounded">More Details</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="card" style="width:40rem">
 
+          <div class="card-body">
+            <div class="d-flex justify-content-evenly" data-controller="edit-profile" data-edit-profile-target="card">
+              <% if @pet.photo.present? %>
+                <%= cl_image_tag(@pet.photo.key, class: 'profile-rounded')%>
+              <% else %>
+                <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
+              <% end %>
 
-            <div>
              <%= render 'edit_pet', pet: @pet %>
-            <%# Must Check! %>
-            </div>
 
+            </div>
+          </div>
+
+        </div>
 
         <div class="container p-1">
           <div class="row my-4">
