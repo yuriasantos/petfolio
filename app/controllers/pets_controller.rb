@@ -1,11 +1,8 @@
 class PetsController < ApplicationController
 
+
   before_action :set_pet, only: %i[show destroy edit update]
 
-  def new
-    @tutor = Tutor.find_by(user: current_user)
-    @pet = Pet.new
-  end
 
   def create
     @tutor = Tutor.find_by(user: current_user)
@@ -27,6 +24,7 @@ class PetsController < ApplicationController
       @pet_apo = @pet_apo.global_search(params[:query])
     end
 
+
   end
 
   def destroy
@@ -43,6 +41,7 @@ class PetsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+
   end
 
   private
