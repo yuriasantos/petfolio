@@ -22,12 +22,13 @@ class ClinicsController < ApplicationController
   end
 
   def show
-    @clinic_apo = @clinic.appointments
+    @clinic_apo = @clinic.appointments.order("datetime DESC")
+    @clinic_apo_new = @clinic_apo.select { |apo| apo.datetime >= Time.now }
+    @clinic_apo_old = @clinic_apo.select { |apo| apo.datetime < Time.now }
 
     if params[:query].present?
       @clinic_apo = @clinic_apo.global_search(params[:query])
     end
-
   end
 
   def new
@@ -52,6 +53,8 @@ class ClinicsController < ApplicationController
   def update
     if @clinic.update(clinic_params)
       redirect_to clinic_path(@clinic), notice: "Updated!"
+    else
+      render :show, status: :unprocessable_entity
     end
   end
 
