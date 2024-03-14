@@ -38,11 +38,43 @@
                     </div>
                   <% end %>
                 <% end %>
+
+
+                <!-- Button trigger modal -->
+                <button class="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><%= link_to "New Vet" %></button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+
+                      <%= simple_form_for @vet do |vet_builder| %>
+                      <%= vet_builder.input :fullname %>
+                      <%= vet_builder.input :crmv %>
+                      <%= vet_builder.input :specialty, collection: Vet::SPECIALTIES %>
+                      <%= vet_builder.simple_fields_for @user do |user_builder| %>
+                        <%= user_builder.input :email %>
+                        <%= user_builder.input :password %>
+                      <% end %>
+                      <%= vet_builder.submit 'Save', class: ('btn btn-warning') %>
+                      <% end %>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
             <div class="d-flex">
-              <button class="btn btn-warning me-1"><%= link_to "New Vet", new_vet_path(@vets) %></button>
+
             </div>
 
           </div>

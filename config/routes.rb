@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :appointments, only: [:new, :create]
   end
   resources :tutors, only: [:new, :create, :show, :edit, :update]
-  resources :vets
+  resources :vets, except: [:new]
   resources :appointments, only: [:index] do
     resources :reviews, only: [:new, :create]
   end

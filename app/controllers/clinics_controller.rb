@@ -25,6 +25,8 @@ class ClinicsController < ApplicationController
     @clinic_apo = @clinic.appointments.order("datetime DESC")
     @clinic_apo_new = @clinic_apo.select { |apo| apo.datetime >= Time.now }
     @clinic_apo_old = @clinic_apo.select { |apo| apo.datetime < Time.now }
+    @vet = Vet.new
+    @user = User.new
 
     if params[:query].present?
       @clinic_apo = @clinic_apo.global_search(params[:query])
