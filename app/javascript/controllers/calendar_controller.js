@@ -23,7 +23,7 @@ let month = date.getMonth();
 
 // Connects to data-controller="calendar"
 export default class extends Controller {
-  static targets = [ "day", "currDate", "dayWithAppointment", "insertAppointments" ]
+  static targets = [ "day", "currDate" ]
   static values = { vetsAppointments: Array }
 
   connect() {
@@ -57,7 +57,7 @@ export default class extends Controller {
       let dayToCheck = i.toString().padStart(2, "0")
       let toCheck = year + "-" + monthToCheck + "-" + dayToCheck;
       if (this.hasAppointment(toCheck)) {
-        lit += `<li class="active" data-calendar-target="dayWithAppointment" data-action="click->calendar#fetchAppointments">${i}</li>`;
+        lit += `<li class="active" data-action="click->calendar#fetchAppointments">${i}</li>`;
       } else {
         lit += `<li class="">${i}</li>`;
       }
@@ -85,19 +85,18 @@ export default class extends Controller {
 
   fetchAppointments(event){
     const vet_id = window.location.href.split('/').at(-1);
-    console.log(event.textContent)
-    fetch(`${vet_id}/appointments_list?query=${event.currentTarget.textContent}`, {headers: {"Accept": "text/plain"}})
+    const dateToQuery = this.monthYearFromCurrDate(event.target.textContent.padStart(2, "0"))
+    fetch(`${vet_id}/appointments_list?query=${dateToQuery}`, {headers: {"Accept": "text/plain"}})
     .then(response => response.text())
     .then((data) => {
       document.querySelector(".consultations-container").innerHTML = data
-      // this.insertAppointmentsTarget.innerHTML = data
     })
   }
 
-  monthYearFromCurrDate(){
-    let currMonth = (months.indexOf(currDate.split(' ')[0]) + 1).toString()
-    let currYear = currDate.split(' ')[1]
-    return `${currYear}-${currMonth}`
-
+  monthYearFromCurrDate(currDay){
+    console.log(this.currDateTarget)
+    let currMonth = (months.indexOf(this.currDateTarget.textContent.split(' ')[0]) + 1).toString().padStart(2, "0")
+    let currYear = this.currDateTarget.textContent.split(' ')[1]
+    return `${currYear}-${currMonth}-${currDay}`
   }
 }

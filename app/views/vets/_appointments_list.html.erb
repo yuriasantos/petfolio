@@ -1,12 +1,15 @@
-<ul>
+<div>
   <% vet_appointments.each do |appointment| %>
-    <li><%= appointment.pet.name %></li>
-    <%# <% appointment.pet %>
-    <%= simple_form_for([appointment,record]) do |f| %>
-      <%= f.input :content %>
-      <div class="actions d-flex justify-content-center"">
-        <%= f.button :submit, class: "btn btn-warning" %>
-      </div>
-    <% end %>
+    <div data-controller="records">
+      <div><%= appointment.pet.name %></div>
+        <div>
+          <% appointment.pet.records.each do |record| %>
+            <%= render 'records/record', record: record %>
+          <% end %>
+        </div>
+      <% if appointment.record.nil? %>
+        <%= render 'records/form', appointment: appointment, record: record %>
+      <% end %>
+    </div>
   <% end %>
-</ul>
+</div>

@@ -34,9 +34,11 @@ class VetsController < ApplicationController
 
   def appointments_list
     @vet = Vet.find(params[:id])
+    date_to_search = Date::strptime(params[:query], "%Y-%m-%d")
+    @appointments_to_show = @vet.appointments.select { |appointment| appointment.datetime.to_date == date_to_search }
     @record = Record.new
     respond_to do |format|
-      format.text { render partial: "vets/appointments_list", locals: { vet_appointments: @vet.appointments, record: @record}, formats: [:html] }
+      format.text { render partial: "vets/appointments_list", locals: { vet_appointments: @appointments_to_show, record: @record}, formats: [:html] }
     end
   end
 
