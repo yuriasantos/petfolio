@@ -25,10 +25,13 @@ class TutorsController < ApplicationController
   end
 
   def update
-    if @tutor.update(tutor_params)
-      redirect_to tutor_path(@tutor), notice: "Updated!"
-    else
-      render :show, status: :unprocessable_entity
+    @tutor.update(tutor_params)
+
+    respond_to do |format|
+      format.html { redirect_to tutor_path(@tutor) }
+      format.text { render partial: "tutors/edit_tutor",
+        locals: {tutor: @tutor}, formats: [:html]
+      }
     end
   end
 
