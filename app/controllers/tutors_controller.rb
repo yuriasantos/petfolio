@@ -19,6 +19,7 @@ class TutorsController < ApplicationController
 
   def show
     @tutor = Tutor.find(params[:id])
+    @pet = Pet.new
   end
 
   private

@@ -1,8 +1,5 @@
 class PetsController < ApplicationController
-  def new
-    @tutor = Tutor.find_by(user: current_user)
-    @pet = Pet.new
-  end
+
 
   def create
     @tutor = Tutor.find_by(user: current_user)
@@ -22,7 +19,7 @@ class PetsController < ApplicationController
     if params[:query].present?
       @pet_apo = @pet_apo.global_search(params[:query])
     end
-    
+
   end
 
   private
