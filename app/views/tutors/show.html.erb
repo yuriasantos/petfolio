@@ -52,6 +52,10 @@
             </div>
             <hr>
             <hr>
+
+            <%# <%= render 'edit_tutor', tutor: @tutor  %>
+            <%# Must Check! %>
+
             <div class="row">
 
             </div>
@@ -81,6 +85,7 @@
                     <p class="text-muted text-capitalize"><%= pet.species %> <span> </p>
                   </div>
                   <button type="button" class="btn btn-warning mt-3 waves-effect w-md waves-light"><%= link_to "Appointments", pet_path(pet.id) %></button>
+                  <p><%= link_to "Delete Pet", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Do yo delete him/her?"} %></p>
               </div>
             </div>
         <% end %>
