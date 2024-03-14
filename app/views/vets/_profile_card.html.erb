@@ -1,6 +1,16 @@
-<div class="dotted-card p-4">
-  <h3><%= vet.fullname %></h3>
-  <p><%= vet.crmv %></p>
-  <p><%= vet.specialty %></p>
-  <p><%= vet.email %></p>
+<div class="dotted-card p-4" data-controller="edit-profile" data-edit-profile-target="content">
+  <div data-edit-profile-target="info">
+    <div class="d-flex justify-content-between">
+      <h3><%= vet.fullname %></h3>
+      <div data-action="click->edit-profile#displayForm">
+        <i class="fa-solid fa-pen fa-xs ml-2" ></i>
+      </div>
+    </div>
+    <p><%= vet.crmv %></p>
+    <p><%= vet.specialty %></p>
+    <p><%= vet.email %></p>
+  </div>
+
+    <%= render 'edit_vet', vet: vet %>
+
 </div>
