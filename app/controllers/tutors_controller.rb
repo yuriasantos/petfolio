@@ -19,6 +19,7 @@ class TutorsController < ApplicationController
   end
 
   def show
+    @pet = Pet.new
   end
 
   def edit
@@ -30,6 +31,7 @@ class TutorsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+
   end
 
   private
