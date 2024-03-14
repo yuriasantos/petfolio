@@ -20,6 +20,8 @@ class PetsController < ApplicationController
 
   def show
     @pet_apo = @pet.appointments
+    @appointment = Appointment.new
+    @review = Review.new
 
     if params[:query].present?
       @pet_apo = @pet_apo.global_search(params[:query])

@@ -3,6 +3,8 @@ class ClinicsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: :index
 
+  before_action :set_clinic, only: %i[show edit update]
+
   def index
     if params[:query].present?
       @clinics = Clinic.search_by_name(params[:query])
@@ -20,13 +22,13 @@ class ClinicsController < ApplicationController
   end
 
   def show
-    @clinic = Clinic.find_by(id: params[:id])
-    @clinic_apo = @clinic.appointments
+    @clinic_apo = @clinic.appointments.order("datetime DESC")
+    @clinic_apo_new = @clinic_apo.select { |apo| apo.datetime >= Time.now }
+    @clinic_apo_old = @clinic_apo.select { |apo| apo.datetime < Time.now }
 
     if params[:query].present?
       @clinic_apo = @clinic_apo.global_search(params[:query])
     end
-
   end
 
   def new
@@ -45,8 +47,23 @@ class ClinicsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @clinic.update(clinic_params)
+      redirect_to clinic_path(@clinic), notice: "Updated!"
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+
 
   private
+
+  def set_clinic
+    @clinic = Clinic.find_by(id: params[:id])
+  end
 
   def clinic_params
     params.require(:clinic).permit(:cnpj, :address, :company_name, :photo)
