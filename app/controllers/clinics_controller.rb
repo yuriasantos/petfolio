@@ -51,11 +51,15 @@ class ClinicsController < ApplicationController
   end
 
   def update
-    if @clinic.update(clinic_params)
-      redirect_to clinic_path(@clinic), notice: "Updated!"
-    else
-      render :show, status: :unprocessable_entity
+    @clinic.update(clinic_params)
+
+    respond_to do |format|
+      format.html { redirect_to clinic_path(params[:id]) }
+      format.text { render partial: "clinics/edit_clinic",
+        locals: {clinic: @clinic}, formats: [:html]
+      }
     end
+
   end
 
 
