@@ -41,6 +41,8 @@ class VetsController < ApplicationController
   def update
     if @vet.update(vet_params)
       redirect_to vet_path(@vet), notice: "Updated!"
+    else
+      render :show, status: :unprocessable_entity
     end
   end
 

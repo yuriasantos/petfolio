@@ -53,6 +53,8 @@ class ClinicsController < ApplicationController
   def update
     if @clinic.update(clinic_params)
       redirect_to clinic_path(@clinic), notice: "Updated!"
+    else
+      render :show, status: :unprocessable_entity
     end
   end
 
