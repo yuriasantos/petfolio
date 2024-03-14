@@ -1,6 +1,5 @@
 class ClinicsController < ApplicationController
   skip_before_action :redirect_user_if_enrollment_incomplete, only: %i[new create]
-
   skip_before_action :authenticate_user!, only: :index
 
   def index
@@ -9,24 +8,24 @@ class ClinicsController < ApplicationController
     else
       @clinics = Clinic.all
     end
-
+    authorize @clinics
     @markers = @clinics.geocoded.map do |clinic|
       {
         lat: clinic.latitude,
         lng: clinic.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {clinic:})
+        info_window_html: render_to_string(partial: "info_window", locals: { clinic: })
       }
     end
   end
 
   def show
     @clinic = Clinic.find_by(id: params[:id])
-    @clinic_apo = @clinic.appointments
-
+    authorize @clinic
     if params[:query].present?
       @clinic_apo = @clinic_apo.global_search(params[:query])
+    else
+      @clinic_apo = @clinic.appointments
     end
-
   end
 
   def new
@@ -44,7 +43,6 @@ class ClinicsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 

@@ -13,4 +13,8 @@ class VetPolicy < ApplicationPolicy
   def create?
     user.clinic?
   end
+
+  def show?
+    user.related_object == record
+  end
 end

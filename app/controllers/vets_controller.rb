@@ -26,6 +26,7 @@ class VetsController < ApplicationController
 
   def show
     @vet = Vet.find(params[:id])
+    authorize @vet
   end
 
   private

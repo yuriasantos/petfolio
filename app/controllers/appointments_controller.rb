@@ -16,10 +16,20 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def vets_appointments
+    @appointments = policy_scope(Appointment)
+    custom_response = @product.rentals.map do |rental|
+      {
+        start_date: rental.start_date,
+        end_date: rental.end_date
+      }
+    end
+    render json: custom_response
+  end
+
   private
 
   def appointment_params
     params.require(:appointment).permit(:datetime, :pet_id, :vet_id)
   end
-
 end
