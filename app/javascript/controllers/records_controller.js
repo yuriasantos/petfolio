@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="records"
 export default class extends Controller {
-  static targets = [ 'form' ]
+  static targets = [ 'form', 'appointment' ]
 
   connect() {
 
@@ -18,7 +18,14 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        this.formTarget.remove()
+        console.log(data)
+
+        if (data.record) {
+          this.appointmentTarget.insertAdjacentHTML("beforeend", data.record)
+          this.formTarget.remove()
+        } else {
+          this.formTarget.outerHTML = data.form
+        }
       })
   }
 }

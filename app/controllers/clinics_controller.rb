@@ -23,15 +23,17 @@ class ClinicsController < ApplicationController
   def show
     authorize @clinic
     @clinic_apo = @clinic.appointments.order("datetime DESC")
-    @clinic_apo_new = @clinic_apo.select { |apo| apo.datetime >= Time.now }
-    @clinic_apo_old = @clinic_apo.select { |apo| apo.datetime < Time.now }
-    @vet = Vet.new
-    @user = User.new
+
     if params[:query].present?
       @clinic_apo = @clinic_apo.global_search(params[:query])
     else
       @clinic_apo = @clinic.appointments
     end
+
+    @clinic_apo_new = @clinic_apo.select { |apo| apo.datetime >= Time.now }
+    @clinic_apo_old = @clinic_apo.select { |apo| apo.datetime < Time.now }
+    @vet = Vet.new
+    @user = User.new
   end
 
   def new
@@ -52,11 +54,13 @@ class ClinicsController < ApplicationController
 
 
   def edit
+    authorize @clinic
   end
 
   def update
-    @clinic.update(clinic_params)
+    authorize @clinic
 
+    @clinic.update(clinic_params)
     respond_to do |format|
       format.html { redirect_to clinic_path(params[:id]) }
       format.text { render partial: "clinics/edit_clinic",
@@ -65,7 +69,7 @@ class ClinicsController < ApplicationController
     end
 
   end
-  
+
   private
 
   def set_clinic

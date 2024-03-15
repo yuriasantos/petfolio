@@ -1,10 +1,12 @@
 <div data-edit-profile-target="content">
 
   <div class="card-product-infos d-flex flex-column" data-edit-profile-target="info">
-   <div class="d-flex justify-content-between" data-action="click->edit-profile#displayForm">
-    <h2><i class="fa-solid fa-hospital"></i>&nbsp; <strong><%= @clinic.company_name %></strong></h2>
-    <i class="fa-solid fa-pen fa-xs ml-2" ></i>
-  </div>
+    <div class="d-flex justify-content-between">
+     <h2><i class="fa-solid fa-hospital"></i>&nbsp; <strong><%= @clinic.company_name %></strong></h2>
+     <% if policy(clinic).edit? %>
+        <i class="fa-solid fa-pen fa-xs ml-2"  data-action="click->edit-profile#displayForm" ></i>
+     <% end %>
+    </div>
 
     <ul>
       <li><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @clinic.address %></li>

@@ -1,0 +1,23 @@
+.green-box {
+  background-color: $lightgreen;
+  height: 100%;
+
+
+}
+
+.record-box {
+  background-color: rgb(215, 215, 215);
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+.record-content {
+  margin: 1rem;
+  padding: 0 0 0 1rem;
+  border-left: 4px rgb(136, 136, 136) solid;
+}
+
+.record-date {
+  font-style: italic;
+  color: rgb(136, 136, 136);
+}

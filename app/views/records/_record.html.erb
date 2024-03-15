@@ -1,1 +1,4 @@
-<div><%= record.content %></div>
+<div class="record-box">
+  <p class="record-date">Record issued in <%= record.created_at.to_date %></p>
+  <p class="record-content"><%= record.content %></p>
+</div>

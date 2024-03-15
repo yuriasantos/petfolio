@@ -11,8 +11,7 @@
       </h2>
 
       <div id="flush-collapse-<%=appointment.id%>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
-
+        <div class="accordion-body" data-records-target="appointment">
 
           <% appointment.pet.records.each do |record| %>
             <%= render 'records/record', record: record %>
@@ -21,7 +20,6 @@
           <% if appointment.record.nil? %>
             <%= render 'records/form', appointment: appointment, record: record %>
           <% end %>
-
 
         </div>
       </div>
