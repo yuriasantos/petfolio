@@ -84,12 +84,12 @@
     align-items: center;
   }
 
-  .img-vet{
-    height: 150px;
-    width: fit-content;
-    display: flex;
+  // .img-vet{
+  //   height: 150px;
+  //   width: fit-content;
+  //   display: flex;
 
-  }
+  // }
 
 }
 
@@ -155,4 +155,27 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+
+
+.vet-card  {
+    display: flex;
+    gap: 15px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon-card {
+  display: flex;
+  align-items: end;
+}
+
+.img-card {
+  border-radius: 8px;
 }
