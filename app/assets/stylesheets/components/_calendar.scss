@@ -101,7 +101,7 @@ header .calendar-current-date {
 }
 
 .calendar-dates li.active::before {
-  background: #6332c5;
+  background: $orange-btn;
 }
 
 .calendar-dates li:not(.active):hover::before {

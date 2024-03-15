@@ -1,4 +1,4 @@
-<div class="dotted-card p-4" data-controller="edit-profile" data-edit-profile-target="content">
+<div class="vet-profile p-4" data-controller="edit-profile" data-edit-profile-target="content">
   <div data-edit-profile-target="info">
     <div class="d-flex justify-content-between">
       <h3><%= vet.fullname %></h3>
@@ -6,9 +6,9 @@
         <i class="fa-solid fa-pen fa-xs ml-2" ></i>
       </div>
     </div>
-    <p><%= vet.crmv %></p>
-    <p><%= vet.specialty %></p>
-    <p><%= vet.email %></p>
+    <p class="vet-professional-info">Specialty: <%= vet.specialty %></p>
+    <p class="vet-professional-info">CRMV: <%= vet.crmv %></p>
+    <p class="vet-email"><%= vet.email %></p>
   </div>
 
     <%= render 'edit_vet', vet: vet %>
