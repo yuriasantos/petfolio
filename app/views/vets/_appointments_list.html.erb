@@ -1,15 +1,38 @@
-<div>
+
+
+
+
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
   <% vet_appointments.each do |appointment| %>
-    <div data-controller="records">
-      <div><%= appointment.pet.name %></div>
-        <div>
+
+    <div class="accordion-item" data-controller="records">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+
+          <%= appointment.pet.name %>
+
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+
+
           <% appointment.pet.records.each do |record| %>
             <%= render 'records/record', record: record %>
           <% end %>
+
+          <% if appointment.record.nil? %>
+            <%= render 'records/form', appointment: appointment, record: record %>
+          <% end %>
+
+
         </div>
-      <% if appointment.record.nil? %>
-        <%= render 'records/form', appointment: appointment, record: record %>
-      <% end %>
+      </div>
     </div>
+
+
+
+
   <% end %>
 </div>
