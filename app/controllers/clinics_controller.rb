@@ -54,11 +54,13 @@ class ClinicsController < ApplicationController
 
 
   def edit
+    authorize @clinic
   end
 
   def update
-    @clinic.update(clinic_params)
+    authorize @clinic
 
+    @clinic.update(clinic_params)
     respond_to do |format|
       format.html { redirect_to clinic_path(params[:id]) }
       format.text { render partial: "clinics/edit_clinic",
