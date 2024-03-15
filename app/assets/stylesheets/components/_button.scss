@@ -1,6 +1,9 @@
+.btn {
+  border-radius: 5px;
+}
+
 .btn.btn-primary {
   color: $darkgreen-text;
-  border-radius: 5px;
 
     a{
     color: $darkgreen-text;
@@ -8,18 +11,15 @@
 }
 
 .btn.btn-warning {
-  color: $darkgreen-text;
-  border-radius: 5px;
 
+  color: white;
     a{
-    color: $darkgreen-text;
+    color: white;
   }
 }
 
 .btn.btn-success {
   color: $lightgreen;
-  border-radius: 5px;
-
   a{
     color: $lightgreen;
   }
@@ -29,5 +29,4 @@
 .btn-tutor {
   width: 50%;
   align-self: center;
-  border-radius: 5px;
 }

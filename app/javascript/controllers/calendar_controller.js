@@ -15,9 +15,7 @@ const months = [
   "December"
 ];
 
-let now = new Date();
 let date = new Date();
-let currDay = now.getDay();
 let year = date.getFullYear();
 let month = date.getMonth();
 
@@ -27,7 +25,17 @@ export default class extends Controller {
   static values = { vetsAppointments: Array }
 
   connect() {
-    this.fillCalendar()
+    this.fillCalendar();
+    let now = new Date();
+    let initialDay = now.getDate().toString().padStart(2, "0");
+    let initialMonth = now.getMonth() + 1;
+    let initialYear = now.getFullYear().toString();
+
+    fetch(`${window.location.href.split('/').at(-1)}/appointments_list?query=${initialYear}-${initialMonth.toString().padStart(2, "0")}-${initialDay}`, {headers: {"Accept": "text/plain"}})
+    .then(response => response.text())
+    .then((data) => {
+      document.querySelector(".consultations-container").innerHTML = data
+    })
   }
 
   previousMonth() {
@@ -59,7 +67,7 @@ export default class extends Controller {
       if (this.hasAppointment(toCheck)) {
         lit += `<li class="active" data-action="click->calendar#fetchAppointments">${i}</li>`;
       } else {
-        lit += `<li class="">${i}</li>`;
+        lit += `<li class="" data-action="click->calendar#fetchAppointments">${i}</li>`;
       }
     }
     for (let i = dayend; i < 6; i++) {
@@ -94,7 +102,6 @@ export default class extends Controller {
   }
 
   monthYearFromCurrDate(currDay){
-    console.log(this.currDateTarget)
     let currMonth = (months.indexOf(this.currDateTarget.textContent.split(' ')[0]) + 1).toString().padStart(2, "0")
     let currYear = this.currDateTarget.textContent.split(' ')[1]
     return `${currYear}-${currMonth}-${currDay}`

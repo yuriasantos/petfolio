@@ -1,43 +1,44 @@
-<div class="container-md">
-  <div class="row my-4">
-    <div class="col-12 col-md-5 col-lg-5">
-      <div class="row my-4">
-        <%= render 'profile_card', vet: @vet %>
-      </div>
-      <div class="row my-4" id="calendar-row">
-        <div class="calendar-container" data-controller="calendar" data-calendar-vets-appointments-value="<%= @vet_appointments %>">
-            <header class="calendar-header">
-                <p class="calendar-current-date" data-calendar-target="currDate"></p>
-                <div class="calendar-navigation">
-                    <span id="calendar-prev"
-                          class="material-symbols-rounded">
-                        <i class="fa-solid fa-chevron-left" data-action="click->calendar#previousMonth"></i>
-                    </span>
-                    <span id="calendar-next"
-                          class="material-symbols-rounded">
-                        <i class="fa-solid fa-chevron-right" data-action="click->calendar#nextMonth"></i>
-                    </span>
-                </div>
-            </header>
-            <div class="calendar-body">
-                <ul class="calendar-weekdays">
-                    <li>Sun</li>
-                    <li>Mon</li>
-                    <li>Tue</li>
-                    <li>Wed</li>
-                    <li>Thu</li>
-                    <li>Fri</li>
-                    <li>Sat</li>
-                </ul>
-                <ul class="calendar-dates" data-calendar-target="day">
-                </ul>
-            </div>
+<div class="container-fluid">
+  <div class="green-box">
+    <div class="main-row row">
+      <div class="main-col col-12 col-sm-12 col-md-12 col-lg-5 col-xl-4 col-xxl-3">
+        <div class="row left-cards">
+          <%= render 'profile_card', vet: @vet %>
+        </div>
+        <div class="row left-cards">
+          <div class="calendar-container" data-controller="calendar" data-calendar-vets-appointments-value="<%= @vet_appointments %>">
+              <header class="calendar-header">
+                  <p class="calendar-current-date" data-calendar-target="currDate"></p>
+                  <div class="calendar-navigation">
+                      <span id="calendar-prev"
+                            class="material-symbols-rounded">
+                          <i class="fa-solid fa-chevron-left" data-action="click->calendar#previousMonth"></i>
+                      </span>
+                      <span id="calendar-next"
+                            class="material-symbols-rounded">
+                          <i class="fa-solid fa-chevron-right" data-action="click->calendar#nextMonth"></i>
+                      </span>
+                  </div>
+              </header>
+              <div class="calendar-body">
+                  <ul class="calendar-weekdays">
+                      <li>Sun</li>
+                      <li>Mon</li>
+                      <li>Tue</li>
+                      <li>Wed</li>
+                      <li>Thu</li>
+                      <li>Fri</li>
+                      <li>Sat</li>
+                  </ul>
+                  <ul class="calendar-dates" data-calendar-target="day">
+                  </ul>
+              </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-md-5 col-lg-5">
-      <div class="consultations-container">
-
+      <div class="main-col col-12 col-sm-12 col-md-12 col-lg-7 col-xl-8 col-xxl-9">
+        <div class="row consultations-container">
+        </div>
       </div>
     </div>
   </div>

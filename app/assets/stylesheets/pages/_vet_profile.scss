@@ -1,0 +1,90 @@
+.green-box {
+  background-color: $lightgreen;
+  height: 100%;
+  padding: 1.5rem;
+  margin: 1.5rem;
+  border-radius: 5x;
+}
+
+.main-row {
+  margin: 0;
+}
+
+.main-col {
+  padding: 0;
+}
+
+.left-cards {
+  margin: 0 1.5rem 0 0;
+  padding: 0;
+}
+
+.vet-profile {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  margin: 0 0 1.5rem 0;
+  h3 {
+    margin-bottom: 0;
+  }
+  p {
+    margin: 0;
+  }
+  .vet-professional-info {
+    font-style: italic;
+    color: rgb(136, 136, 136);
+  }
+  .vet-email{
+    margin: 2rem 0 0 0;
+  }
+}
+
+.consultations-container {
+  margin: 0;
+}
+
+.green-border {
+  border-left: 3px $darkgreen-text solid;
+  padding: 0 0 0 1.5rem;
+}
+
+.accordion {
+  margin-top: 1.5rem;
+}
+
+.record-box {
+  background-color: rgb(241, 241, 241);
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+}
+
+.record-content {
+  margin: 1rem;
+  padding: 0 0 0 1rem;
+  border-left: 3px rgba(255, 255, 255, 0.9) solid;
+  color: rgb(65, 65, 65);
+}
+
+.record-date {
+  font-style: italic;
+  color: rgb(136, 136, 136);
+}
+
+.patient-info {
+  margin: 0 0 0 1.5rem;
+  p {
+    margin: 0;
+  }
+  .pet-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .pet-owner {
+    position: absolute;
+    bottom: 0px;
+    margin: 0 0 1rem 0;
+    font-style: italic;
+    color: rgb(136, 136, 136);
+  }
+}

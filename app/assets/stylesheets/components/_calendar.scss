@@ -20,12 +20,12 @@ header .calendar-navigation {
 }
 
 header .calendar-navigation span {
-  height: 38px;
-  width: 38px;
+  height: 1.5rem;
+  width: 1.5rem;
   margin: 0 1px;
   cursor: pointer;
   text-align: center;
-  line-height: 38px;
+  line-height: 1rem;
   border-radius: 50%;
   user-select: none;
   color: #aeabab;
@@ -43,6 +43,7 @@ header .calendar-navigation span:hover {
 header .calendar-current-date {
   font-weight: 500;
   font-size: 1.45rem;
+  margin-bottom: 0;
 }
 
 .calendar-body {
@@ -63,7 +64,7 @@ header .calendar-current-date {
 
 .calendar-body li {
   width: calc(100% / 7);
-  font-size: 1.07rem;
+  font-size: 1rem;
   color: #414141;
 }
 
@@ -73,7 +74,7 @@ header .calendar-current-date {
 }
 
 .calendar-body .calendar-dates li {
-  margin-top: 30px;
+  margin-top: 1rem;
   position: relative;
   z-index: 1;
   cursor: pointer;
@@ -100,7 +101,7 @@ header .calendar-current-date {
 }
 
 .calendar-dates li.active::before {
-  background: #6332c5;
+  background: $orange-btn;
 }
 
 .calendar-dates li:not(.active):hover::before {
