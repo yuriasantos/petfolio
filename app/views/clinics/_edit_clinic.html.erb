@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between">
      <h2><i class="fa-solid fa-hospital"></i>&nbsp; <strong><%= @clinic.company_name %></strong></h2>
      <% if policy(clinic).edit? %>
-        <i class="fa-solid fa-pen fa-xs ml-2"  data-action="click->edit-profile#displayForm" ></i>
+        <i class="fa-solid fa-pen fa-xs ml-2 position-absolute top-0 end-0 p-4"  data-action="click->edit-profile#displayForm" ></i>
      <% end %>
     </div>
 

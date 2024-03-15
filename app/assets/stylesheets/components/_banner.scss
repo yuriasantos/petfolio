@@ -2,20 +2,30 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   border-radius: 15px;
+  margin-top: 25px;
+  margin-bottom: 45px;
 }
 
 .banner-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 
 .banner-content h3 {
   font-size: 12px;
+}
+
+.clinic-banner {
+  margin-top: 25px;
+  border-radius: 15px;
+}
+
+.clinic-user {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
 }
