@@ -1,0 +1,17 @@
+.footer {
+  width: 100%;
+  min-height: 80px;
+  height:48px;
+  bottom: 40px;
+  left: 0;
+
+  .footer-copyright{
+    color: $darkgreen-text;
+    font-size: 0.8rem;
+  }
+
+  i {
+    color: $darkgreen-text;
+  }
+
+}
