@@ -17,4 +17,8 @@ class Appointment < ApplicationRecord
     tsearch: { prefix: true}
   }
 
+  def date_in_past?
+    datetime.to_date <= Date.today
+  end
+
 end

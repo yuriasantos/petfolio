@@ -1,0 +1,19 @@
+<div data-edit-profile-target="card">
+
+  <%= simple_form_for vet,
+    html: {
+      class: "d-none",
+      data: {
+        edit_profile_target: "form",
+        action:"submit->edit-profile#update"
+      }
+    } do |f| %>
+
+    <%= f.input :fullname %>
+    <%= f.input :crmv %>
+    <%= f.input :specialty %>
+    <%= f.input :email %>
+    <%= f.button :submit, class: ('btn btn-warning')%>
+  <% end %>
+
+</div>

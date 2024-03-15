@@ -1,10 +1,5 @@
 class VetsController < ApplicationController
-  def new
-    @vet = Vet.new
-    @user = User.new
-    @vet.clinic = Clinic.find_by(user: current_user)
-    authorize @vet
-  end
+  before_action :set_vet, only: %i[show destroy edit update]
 
   def create
     @user = User.new(user_params)
@@ -25,6 +20,7 @@ class VetsController < ApplicationController
   end
 
   def show
+
     @vet = Vet.find(params[:id])
     authorize @vet
     @vet_appointments = @vet.appointments.map do |appointment|
@@ -39,10 +35,32 @@ class VetsController < ApplicationController
     @record = Record.new
     respond_to do |format|
       format.text { render partial: "vets/appointments_list", locals: { vet_appointments: @appointments_to_show, record: @record}, formats: [:html] }
+  end
+
+  def destroy
+    @vet.destroy
+    redirect_to clinic_path(@vet.clinic), notice: "#{@vet.fullname} was deleted."
+  end
+
+  def edit
+  end
+
+  def update
+    @vet.update(vet_params)
+
+    respond_to do |format|
+      format.html { redirect_to vet_path(@vet) }
+      format.text { render partial: "vets/profile_card",
+        locals: {vet: @vet}, formats: [:html]
+      }
     end
   end
 
   private
+
+  def set_vet
+    @vet = Vet.find(params[:id])
+  end
 
   def vet_params
     params.require(:vet).permit(:fullname, :crmv, :specialty, user: %i[email password])

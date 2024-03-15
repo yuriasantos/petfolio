@@ -15,17 +15,6 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # def vets_appointments
-
-  #   custom_response = @product.rentals.map do |rental|
-  #     {
-  #       start_date: rental.start_date,
-  #       end_date: rental.end_date
-  #     }
-  #   end
-  #   render json: custom_response
-  # end
-
   private
 
   def appointment_params

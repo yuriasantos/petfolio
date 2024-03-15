@@ -1,5 +1,6 @@
 class TutorsController < ApplicationController
   skip_before_action :redirect_user_if_enrollment_incomplete, only: %i[new create]
+  before_action :set_tutor, only: %i[show edit update]
 
   def new
     @tutor = Tutor.new
@@ -18,11 +19,29 @@ class TutorsController < ApplicationController
   end
 
   def show
-    @tutor = Tutor.find(params[:id])
     authorize @tutor
+    @pet = Pet.new
+  end
+
+  def edit
+  end
+
+  def update
+    @tutor.update(tutor_params)
+
+    respond_to do |format|
+      format.html { redirect_to tutor_path(@tutor) }
+      format.text { render partial: "tutors/edit_tutor",
+        locals: {tutor: @tutor}, formats: [:html]
+      }
+    end
   end
 
   private
+
+  def set_tutor
+    @tutor = Tutor.find(params[:id])
+  end
 
   def tutor_params
     params.require(:tutor).permit(:fullname, :address, :photo)

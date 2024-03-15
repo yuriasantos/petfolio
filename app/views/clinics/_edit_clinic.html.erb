@@ -1,0 +1,30 @@
+<div data-edit-profile-target="content">
+
+  <div class="card-product-infos d-flex flex-column" data-edit-profile-target="info">
+   <div class="d-flex justify-content-between" data-action="click->edit-profile#displayForm">
+    <h2><i class="fa-solid fa-hospital"></i>&nbsp; <strong><%= @clinic.company_name %></strong></h2>
+    <i class="fa-solid fa-pen fa-xs ml-2" ></i>
+  </div>
+
+    <ul>
+      <li><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @clinic.address %></li>
+      <li><i class="fa-solid fa-id-card"></i>&nbsp; <%= @clinic.cnpj %></li>
+    </ul>
+  </div>
+
+  <%= simple_form_for clinic,
+    html: {
+      class: "d-none",
+      data: {
+        edit_profile_target: "form",
+        action:"submit->edit-profile#update"
+      }
+    } do |f| %>
+
+    <%= f.input :company_name %>
+    <%= f.input :address %>
+    <%= f.input :cnpj %>
+    <%= f.button :submit, class: ('btn btn-warning') %>
+  <% end %>
+
+</div>

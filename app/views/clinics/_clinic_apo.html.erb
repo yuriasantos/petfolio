@@ -1,0 +1,91 @@
+<div class="col-12">
+  <% unless current_user.tutor %>
+
+    <div class="card m-2" id="apo-card">
+
+      <h2>All Appointments</h2>
+
+      <div class="width-100 my-2">
+        <%= form_with url: clinic_path(clinic), method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: " "
+          %>
+          <%= submit_tag "Search", name: "", class: "btn btn-warning" %>
+        <% end %>
+      </div>
+
+      <div class="card mb-2">
+
+        <h2>Upcoming</h2>
+        <% clinic_apo_new.each do |appointment| %>
+
+          <button class="btn btn-success m-1" type="button" data-bs-toggle="collapse" data-bs-target="#appointment-<%=appointment.id %> " aria-expanded="false" aria-controls="collapseExample">
+            <i class="fa-solid fa-stethoscope"></i>&nbsp; <%= appointment.vet.fullname.split.first %>&nbsp;
+            <i class="fa-solid fa-paw"></i>&nbsp; <%= appointment.pet.name %>&nbsp;
+            <i class="fa-solid fa-calendar-days">&nbsp; </i><%= appointment.datetime.strftime("%m/%d %H:%M")%>
+          </button>
+
+          <div class="collapse" id="appointment-<%=appointment.id %>">
+            <div class="content">
+              <div class="card m-2" id="apo-info">
+                <h4><strong>Appointment Date:</strong> <%= appointment.datetime.strftime("%m/%d/%Y %H:%M") %></h4>
+                <ul><strong>Assigned Vet:</strong>
+                  <li>Name: <%= appointment.vet.fullname %></li>
+                  <li>Specialty: <%= appointment.vet.specialty %></li>
+                </ul>
+                <ul><strong>Pet information:</strong>
+                  <li>Name: <%= appointment.pet.name %></li>
+                  <li>Species: <%= appointment.pet.species %></li>
+                  <li>Tutor Name: <%= appointment.pet.tutor.fullname %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+
+      <div class="card">
+
+        <h2>Past</h2>
+        <% clinic_apo_old.each do |appointment| %>
+
+          <button class="btn btn-primary m-1" type="button" data-bs-toggle="collapse" data-bs-target="#appointment-<%=appointment.id %> " aria-expanded="false" aria-controls="collapseExample">
+            <i class="fa-solid fa-stethoscope"></i>&nbsp; <%= appointment.vet.fullname.split.first %>&nbsp;
+            <i class="fa-solid fa-paw"></i>&nbsp; <%= appointment.pet.name %>&nbsp;
+            <i class="fa-solid fa-calendar-days">&nbsp; </i><%= appointment.datetime.strftime("%m/%d %H:%M")%>
+          </button>
+
+          <div class="collapse" id="appointment-<%=appointment.id %>">
+            <div class="content">
+              <div class="card m-2" id="apo-info">
+                <h4><strong>Appointment Date:</strong> <%= appointment.datetime.strftime("%m/%d/%Y %H:%M") %></h4>
+                <ul><strong>Assigned Vet:</strong>
+                  <li>Name: <%= appointment.vet.fullname %></li>
+                  <li>Specialty: <%= appointment.vet.specialty %></li>
+                </ul>
+                <ul><strong>Pet information:</strong>
+                  <li>Name: <%= appointment.pet.name %></li>
+                  <li>Species: <%= appointment.pet.species %></li>
+                  <li>Tutor Name: <%= appointment.pet.tutor.fullname %></li>
+                </ul>
+                <% if appointment.review %>
+                    <div>
+                      <ul><strong>Client review:</strong>
+                        <li><%= appointment.review.content %></li>
+                        <li>Rating: <%= appointment.review.clinic_rating %></li>
+                      </ul>
+                    </div>
+                  <% end %>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+</div>

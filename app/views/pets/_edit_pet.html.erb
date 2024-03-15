@@ -1,0 +1,32 @@
+<div data-edit-profile-target="content">
+
+  <div class="justify-content-center text-capitalize mt-3 p-1" data-edit-profile-target="info">
+
+    <div class="d-flex justify-content-between" data-action="click->edit-profile#displayForm">
+      <i class="fa-solid fa-pen fa-xs ml-2" ></i>
+    </div>
+
+    <h4>Name: <%= @pet.name %></h4>
+    <p class="mb-1">Species: <%= @pet.species %></p>
+    <p class="font-size-sm p-1">Breed: <%= @pet.breed %></p>
+    <p class="font-size-sm p-1">Birth: <%= @pet.birth %></p>
+    <button class="btn btn-primary btn-rounded">More Details</button>
+  </div>
+
+  <%= simple_form_for pet,
+    html: {
+      class: "d-none",
+      data: {
+        edit_profile_target: "form",
+        action:"submit->edit-profile#update"
+      }
+    } do |f| %>
+
+    <%= f.input :name %>
+    <%= f.input :species %>
+    <%= f.input :breed %>
+    <%= f.input  :birth %>
+    <%= f.button :submit, class: ('btn btn-warning')%>
+  <% end %>
+
+</div>
