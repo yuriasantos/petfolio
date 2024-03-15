@@ -6,11 +6,19 @@ class ClinicPolicy < ApplicationPolicy
     # end
   end
 
+  def index?
+    true
+  end
+
   def new?
     create?
   end
 
   def create?
     user.clinic? && Clinic.where(user: user).none?
+  end
+
+  def show?
+    true
   end
 end

@@ -1,8 +1,5 @@
 class VetsController < ApplicationController
-
   before_action :set_vet, only: %i[show destroy edit update]
-
-
 
   def create
     @user = User.new(user_params)
@@ -23,6 +20,21 @@ class VetsController < ApplicationController
   end
 
   def show
+
+    @vet = Vet.find(params[:id])
+    authorize @vet
+    @vet_appointments = @vet.appointments.map do |appointment|
+      appointment.datetime.to_date.to_s
+    end
+  end
+
+  def appointments_list
+    @vet = Vet.find(params[:id])
+    date_to_search = Date::strptime(params[:query], "%Y-%m-%d")
+    @appointments_to_show = @vet.appointments.select { |appointment| appointment.datetime.to_date == date_to_search }
+    @record = Record.new
+    respond_to do |format|
+      format.text { render partial: "vets/appointments_list", locals: { vet_appointments: @appointments_to_show, record: @record}, formats: [:html] }
   end
 
   def destroy

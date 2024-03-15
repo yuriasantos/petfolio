@@ -19,4 +19,14 @@ class User < ApplicationRecord
   def vet?
     self.role == 'vet'
   end
+
+  def related_object
+    if self.tutor?
+      Tutor.where(user: self)[0]
+    elsif self.clinic?
+      Clinic.where(user: self)[0]
+    elsif self.vet?
+      Vet.where(user: self)[0]
+    end
+  end
 end

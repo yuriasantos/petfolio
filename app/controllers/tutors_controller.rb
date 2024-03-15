@@ -19,6 +19,7 @@ class TutorsController < ApplicationController
   end
 
   def show
+    authorize @tutor
     @pet = Pet.new
   end
 
@@ -34,7 +35,6 @@ class TutorsController < ApplicationController
         locals: {tutor: @tutor}, formats: [:html]
       }
     end
-
   end
 
   private

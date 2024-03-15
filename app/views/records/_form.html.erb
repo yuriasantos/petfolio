@@ -1,0 +1,6 @@
+<%= simple_form_for([appointment,record], data: { records_target: "form", action: "submit->records#send"}) do |f| %>
+  <%= f.input :content %>
+  <div class="actions d-flex justify-content-center">
+    <%= f.button :submit, class: "btn btn-warning" %>
+  </div>
+<% end %>

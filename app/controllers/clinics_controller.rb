@@ -1,6 +1,5 @@
 class ClinicsController < ApplicationController
   skip_before_action :redirect_user_if_enrollment_incomplete, only: %i[new create]
-
   skip_before_action :authenticate_user!, only: :index
 
   before_action :set_clinic, only: %i[show edit update]
@@ -11,25 +10,27 @@ class ClinicsController < ApplicationController
     else
       @clinics = Clinic.all
     end
-
+    authorize @clinics
     @markers = @clinics.geocoded.map do |clinic|
       {
         lat: clinic.latitude,
         lng: clinic.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {clinic:})
+        info_window_html: render_to_string(partial: "info_window", locals: { clinic: })
       }
     end
   end
 
   def show
+    authorize @clinic
     @clinic_apo = @clinic.appointments.order("datetime DESC")
     @clinic_apo_new = @clinic_apo.select { |apo| apo.datetime >= Time.now }
     @clinic_apo_old = @clinic_apo.select { |apo| apo.datetime < Time.now }
     @vet = Vet.new
     @user = User.new
-
     if params[:query].present?
       @clinic_apo = @clinic_apo.global_search(params[:query])
+    else
+      @clinic_apo = @clinic.appointments
     end
   end
 
@@ -49,6 +50,7 @@ class ClinicsController < ApplicationController
     end
   end
 
+
   def edit
   end
 
@@ -63,8 +65,7 @@ class ClinicsController < ApplicationController
     end
 
   end
-
-
+  
   private
 
   def set_clinic

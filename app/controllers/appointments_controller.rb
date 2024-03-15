@@ -1,5 +1,4 @@
 class AppointmentsController < ApplicationController
-
   def new
     @appointment = Appointment.new
     @tutor = current_user.tutor
@@ -16,11 +15,9 @@ class AppointmentsController < ApplicationController
     end
   end
 
-
   private
 
   def appointment_params
     params.require(:appointment).permit(:datetime, :pet_id, :vet_id)
   end
-
 end

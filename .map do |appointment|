@@ -1,0 +1,29 @@
+=> 
+[[32m#<Appointment:0x00007fcc35372478[0m
+  id: [34m[1m1[0m,
+  datetime: Thu, 14 Mar 2024 18:12:00.000000000 UTC +00:00,
+  vet_id: [34m[1m1[0m,
+  pet_id: [34m[1m2[0m,
+  created_at: Thu, 14 Mar 2024 18:12:46.478437000 UTC +00:00,
+  updated_at: Thu, 14 Mar 2024 18:12:46.478437000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007fcc353723b0[0m
+  id: [34m[1m2[0m,
+  datetime: Mon, 01 Apr 2024 18:12:00.000000000 UTC +00:00,
+  vet_id: [34m[1m1[0m,
+  pet_id: [34m[1m3[0m,
+  created_at: Thu, 14 Mar 2024 18:12:57.503300000 UTC +00:00,
+  updated_at: Thu, 14 Mar 2024 18:12:57.503300000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007fcc353722e8[0m
+  id: [34m[1m3[0m,
+  datetime: Sun, 24 Mar 2024 18:12:00.000000000 UTC +00:00,
+  vet_id: [34m[1m1[0m,
+  pet_id: [34m[1m2[0m,
+  created_at: Thu, 14 Mar 2024 18:13:04.318368000 UTC +00:00,
+  updated_at: Thu, 14 Mar 2024 18:13:04.318368000 UTC +00:00[32m>[0m,
+ [32m#<Appointment:0x00007fcc35372220[0m
+  id: [34m[1m4[0m,
+  datetime: Thu, 14 Mar 2024 18:26:00.000000000 UTC +00:00,
+  vet_id: [34m[1m1[0m,
+  pet_id: [34m[1m3[0m,
+  created_at: Thu, 14 Mar 2024 18:26:24.768129000 UTC +00:00,
+  updated_at: Thu, 14 Mar 2024 18:26:24.768129000 UTC +00:00[32m>[0m]

@@ -1,0 +1,15 @@
+<div>
+  <% vet_appointments.each do |appointment| %>
+    <div data-controller="records">
+      <div><%= appointment.pet.name %></div>
+        <div>
+          <% appointment.pet.records.each do |record| %>
+            <%= render 'records/record', record: record %>
+          <% end %>
+        </div>
+      <% if appointment.record.nil? %>
+        <%= render 'records/form', appointment: appointment, record: record %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
