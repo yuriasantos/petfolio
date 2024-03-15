@@ -35,6 +35,7 @@ class VetsController < ApplicationController
     @record = Record.new
     respond_to do |format|
       format.text { render partial: "vets/appointments_list", locals: { vet_appointments: @appointments_to_show, record: @record}, formats: [:html] }
+    end
   end
 
   def destroy
