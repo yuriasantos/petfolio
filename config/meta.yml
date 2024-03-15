@@ -1,0 +1,5 @@
+ # config/meta.yml
+ meta_product_name: "Petfolio"
+ meta_title: "Petfolio - A place for all your pet needs"
+ meta_description: "Book appointments and rate vets for all your pets!"
+ meta_image: "petfolio_logo.png" # should exist in `app/assets/images/`

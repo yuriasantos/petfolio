@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for
     if current_user.clinic?
       clinic_path(current_user.clinic)
     elsif current_user.tutor?
@@ -38,6 +38,10 @@ class ApplicationController < ActionController::Base
     elsif current_user.vet?
       vet_path(current_user.vet)
     end
+  end
+
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
   end
 
   private
