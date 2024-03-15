@@ -2,7 +2,7 @@
   <% vet_appointments.each do |appointment| %>
     <div data-controller="records">
       <div><%= appointment.pet.name %></div>
-        <div>
+        <div data-records-target="appointment">
           <% appointment.pet.records.each do |record| %>
             <%= render 'records/record', record: record %>
           <% end %>
