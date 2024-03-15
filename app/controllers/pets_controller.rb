@@ -36,12 +36,14 @@ class PetsController < ApplicationController
   end
 
   def update
-    if @pet.update(pet_params)
-      redirect_to pet_path(@pet), notice: "Updated!"
-    else
-      render :show, status: :unprocessable_entity
-    end
+    @pet.update(pet_params)
 
+    respond_to do |format|
+      format.html { redirect_to pet_path(@pet) }
+      format.text { render partial: "pets/edit_pet",
+        locals: {pet: @pet}, formats: [:html]
+      }
+    end
   end
 
   private

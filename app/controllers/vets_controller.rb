@@ -34,10 +34,13 @@ class VetsController < ApplicationController
   end
 
   def update
-    if @vet.update(vet_params)
-      redirect_to vet_path(@vet), notice: "Updated!"
-    else
-      render :show, status: :unprocessable_entity
+    @vet.update(vet_params)
+
+    respond_to do |format|
+      format.html { redirect_to vet_path(@vet) }
+      format.text { render partial: "vets/profile_card",
+        locals: {vet: @vet}, formats: [:html]
+      }
     end
   end
 
