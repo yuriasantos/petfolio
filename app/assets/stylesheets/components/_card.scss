@@ -84,12 +84,12 @@
     align-items: center;
   }
 
-  .img-vet{
-    height: 150px;
-    width: fit-content;
-    display: flex;
+  // .img-vet{
+  //   height: 150px;
+  //   width: fit-content;
+  //   display: flex;
 
-  }
+  // }
 
 }
 
@@ -114,4 +114,82 @@
 .profile-rounded {
   height: 100px;
   width: 100px;
+}
+
+.index-card {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  &:hover{
+    background: $lightgreen;
+    box-shadow: none;
+  }
+}
+
+.index-card > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.index-card h5 {
+  font-size: 16px;
+  font-weight: bold;
+  color: $darkgreen-text;
+  margin: 0;
+}
+
+.index-card p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  color: $darkgreen-text;
+}
+
+
+.index-card .card-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+
+.vet-card  {
+    display: flex;
+    gap: 15px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon-card {
+  display: flex;
+  align-items: end;
+}
+
+.img-card {
+  border-radius: 8px;
+}
+
+.card-product {
+  margin-left: 25px;
+}
+
+.card-appointments {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-appo-text {
+  margin-bottom: 28px;
 }

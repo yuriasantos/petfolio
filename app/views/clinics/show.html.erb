@@ -1,88 +1,86 @@
-<div>
+
   <main class="container">
-    <div class="row mx-2">
-
-      <div class="contaier-md col-md-8 col-lg-7 p-1">
-        <div class="row my-4">
-          <div class="col-12">
-            <div class="card-product mb-2 d-flex justify-content-evenly align-items-center" id="clinic-info" data-controller="edit-profile" data-edit-profile-target="card">
-              <%# <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-thumbnail" alt="clinic-profile-photo"> %>
-                <% if @clinic.photo.present? %>
-                  <%= cl_image_tag @clinic.photo.key, crop: :fill, height: 300, width: 300, class: "img-profile-sq" %>
-                <% else %>
-                  <img src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg" class="img-profile-sq" alt="Clinic Image">
-                <% end %>
 
 
-                <%= render 'edit_clinic', clinic: @clinic %>
-
-            </div>
-
-            <div class="card mb-2" id="vet-card">
-
-              <div class="d-flex justify-content-around w-100">
-                <h4><i class="fa-solid fa-stethoscope"></i>&nbsp; Vets of <%= @clinic.company_name %></h4>
-                 <!-- Button trigger modal -->
-
-                 <% if @clinic.user == current_user %>
-                  <button class="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"> New Vet</button>
-                <% end %>
-
-              </div>
-
-              <div class="card d-flex flex-row justify-content-evenly flex-wrap">
-                <% @clinic.vets.each do |vet| %>
-                  <%= link_to vet, class: "card_link" do %>
-                    <div class="card m-2" id="vet-info">
-                      <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="img-vet" alt="clinic-profile-photo">
-                      <p><strong><%= vet.fullname %></strong></p>
-                      <p><%= vet.specialty %> </p>
-                      <p><%= link_to "Delete Vet", vet_path(vet), data: {turbo_method: :delete, turbo_confirm: "Do you delete him/her?"} %></p>
-
-                    </div>
-                  <% end %>
-                <% end %>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class=" modal-title fs-5" id="exampleModalLabel justify-content-center">Register Partner</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-
-                        <%= simple_form_for @vet do |vet_builder| %>
-                          <%= vet_builder.input :fullname %>
-                          <%= vet_builder.input :crmv %>
-                          <%= vet_builder.input :specialty, collection: Vet::SPECIALTIES %>
-                          <%= vet_builder.simple_fields_for @user do |user_builder| %>
-                          <%= user_builder.input :email %>
-                          <%= user_builder.input :password %>
-                        <% end %>
-                          <%= vet_builder.submit 'Save', class: ('btn btn-warning') %>
-                        <% end %>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="tutor-banner bg-white shadow p-4 position-relative">
+          <div class="banner-user text-center">
+            <% if @clinic.photo.present? %>
+              <%= cl_image_tag @clinic.photo.key, crop: :fill, height: 300, width: 300, class: "img-profile-sq" %>
+            <% else %>
+              <img src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg" class="img-profile-sq" alt="Clinic Image">
+            <% end %>
+          </div>
+          <div class="banner-content ">
+            <%= render 'edit_clinic', clinic: @clinic %>
           </div>
         </div>
       </div>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class=" modal-title fs-5" id="exampleModalLabel justify-content-center">Register Partner</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
 
-      <div class="container-md col-md-4 col-lg-5 p-1">
-        <div class="row my-4">
-          <%= render 'clinic_apo', clinic: @clinic, clinic_apo_old: @clinic_apo_old, clinic_apo_new: @clinic_apo_new %>
+            <%= simple_form_for @vet do |vet_builder| %>
+              <%= vet_builder.input :fullname %>
+              <%= vet_builder.input :crmv %>
+              <%= vet_builder.input :specialty, collection: Vet::SPECIALTIES %>
+              <%= vet_builder.simple_fields_for @user do |user_builder| %>
+              <%= user_builder.input :email %>
+              <%= user_builder.input :password %>
+            <% end %>
+              <%= vet_builder.submit 'Save', class: ('btn btn-warning') %>
+            <% end %>
+          </div>
         </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="d-flex justify-content-center w-100 p-4">
+          <h4><i class="fa-solid fa-stethoscope"></i>&nbsp; Vets of <%= @clinic.company_name %></h4>
+        </div>
+
+        <% @clinic.vets.each do |vet| %>
+            <div class="vet-card shadow-sm">
+              <img src="https://randomuser.me/api/portraits/women/26.jpg" class="img-card" alt="clinic-profile-photo">
+              <div class="info-card">
+                <h5><strong><%= vet.fullname %></strong></h5>
+                <p><%= vet.specialty %> </p>
+              </div>
+              <% if @clinic.user == current_user %>
+                <%= link_to vet_path(vet), class: "icon-card", data: {turbo_method: :delete, turbo_confirm: "Do you delete him/her?"} do %>
+                  <i class="fa-regular fa-trash-can"></i>
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
+
+        <!-- Button trigger modal -->
+        <div class="d-flex justify-content-center">
+          <% if @clinic.user == current_user %>
+            <button class="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"> New Vet</button>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+          <%= render 'clinic_apo', clinic: @clinic, clinic_apo_old: @clinic_apo_old, clinic_apo_new: @clinic_apo_new %>
           <% if current_user.tutor? %>
             <%= link_to 'New Appointment', new_clinic_appointment_path(@clinic), class: 'btn btn-warning' %>
           <% end %>
       </div>
     </div>
-  </main>
-</div>
+
+</main>
