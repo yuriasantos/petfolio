@@ -1,12 +1,9 @@
-
-
-
-
+<div class="col-12">
   <% unless current_user.tutor %>
 
-    <div class="card m-2" id="apo-card">
+    <div class="card-appointments" id="apo-card">
 
-      <h2>All Appointments</h2>
+      <h2 class="card-appo-text">All Appointments</h2>
 
       <div class="width-100 my-2">
         <%= form_with url: clinic_path(clinic), method: :get, class: "d-flex" do %>
@@ -91,3 +88,4 @@
 
     </div>
   <% end %>
+</div>
