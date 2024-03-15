@@ -23,7 +23,11 @@
               <div class="d-flex justify-content-around w-100">
                 <h4><i class="fa-solid fa-stethoscope"></i>&nbsp; Vets of <%= @clinic.company_name %></h4>
                  <!-- Button trigger modal -->
-                <button class="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"> New Vet</button>
+
+                 <% if @clinic.user == current_user %>
+                  <button class="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"> New Vet</button>
+                <% end %>
+
               </div>
 
               <div class="card d-flex flex-row justify-content-evenly flex-wrap">
