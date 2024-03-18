@@ -193,3 +193,16 @@
 .card-appo-text {
   margin-bottom: 28px;
 }
+
+#edit-pet {
+  position: absolute;
+  display: none;
+  top: 1.2rem;
+  right: 1rem;
+  color: rgba(0, 0, 0, 1);
+}
+
+#pet-card:hover #edit-pet {
+  display: block;
+  cursor: pointer;
+}
