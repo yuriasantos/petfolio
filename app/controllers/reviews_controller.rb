@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @appointment = Appointment.find(params[:appointment_id])
     @review.appointment = @appointment
     if @review.save
-      redirect_to @appointment.pet
+      redirect_to pet_path(@appointment.pet)
     else
       render :new, status: :unprocessable_entity
     end

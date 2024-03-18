@@ -12,7 +12,7 @@
               <img src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg" class="img-profile-sq" alt="Clinic Image">
             <% end %>
           </div>
-          <div class="banner-content ">
+          <div class="banner-content"  data-controller="edit-profile" data-edit-profile-target="card">
             <%= render 'edit_clinic', clinic: @clinic %>
           </div>
         </div>
