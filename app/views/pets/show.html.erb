@@ -1,94 +1,34 @@
-<div>
-  <main class="container">
-    <div class="row mx-2">
 
-      <nav aria-label="breadcrumb" class="main-breadcrumb">
-      <ol class="breadcrumb">
-      <li class="breadcrumb-item active p-3" aria-current="page">Pets Profile</li>
-      </ol>
-    </nav>
-      <div class="d-flex justify-content-center">
-        <div class="card" style="width:40rem">
-
-          <div class="card-body">
-            <div class="d-flex justify-content-evenly" data-controller="edit-profile" data-edit-profile-target="card">
-              <% if @pet.photo.present? %>
-                <%= cl_image_tag(@pet.photo.key, class: 'profile-rounded')%>
-              <% else %>
-                <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
-              <% end %>
-
-             <%= render 'edit_pet', pet: @pet %>
-
-            </div>
-          </div>
-
-        </div>
-
-        <div class="container p-1">
-          <div class="row my-4">
-            <div class="col-12">
-            <div class="card m-2" id="apo-card">
-              <h2>All Appointments</h2>
-              <div class="width-100 my-2">
-                <%= form_with url: pet_path(@pet), method: :get, class: "d-flex" do %>
-                  <%= text_field_tag :query,
-                        params[:query],
-                        class: "form-control",
-                        placeholder: " "
-
-                  %>
-                  <%= submit_tag "Search", name: "", class: "btn btn-warning" %>
-                <% end %>
-              </div>
-                <% @pet_apo.each do |appointment| %>
-                  <button class="btn btn-success m-1" type="button" data-bs-toggle="collapse" data-bs-target="#appointment-<%=appointment.id %> " aria-expanded="false" aria-controls="collapseExample">
-                    <i class="fa-solid fa-paw"></i>&nbsp; <%= appointment.pet.name %>&nbsp;
-                    <i class="fa-solid fa-stethoscope"></i>&nbsp; <%= appointment.vet.fullname.split.first %>&nbsp;
-                    <i class="fa-solid fa-calendar-days">&nbsp; </i><%= appointment.datetime.strftime("%m/%d")%>
-                  </button>
-                  <div class="collapse" id="appointment-<%=appointment.id %>">
-                    <div class="content">
-                      <div class="card m-2" id="apo-info">
-                        <h4><strong>Appointment Date:</strong> <%= appointment.datetime.strftime("%m/%d/%Y") %></h4>
-                        <ul><strong>Pet information:</strong>
-                          <li>Name: <%= appointment.pet.name %></li>
-                          <li>Species: <%= appointment.pet.species %></li>
-                          <li>Tutor Name: <%= appointment.pet.tutor.fullname %></li>
-                        </ul>
-                        <ul><strong>Assigned Vet:</strong>
-                          <li>Name: <%= appointment.vet.fullname %></li>
-                          <li>Specialty: <%= appointment.vet.specialty %></li>
-                        </ul>
-                        <ul><strong>Clinic information:</strong>
-                          <li>Name: <%= appointment.vet.clinic.company_name %></li>
-                          <li>Address: <%= appointment.vet.clinic.address %></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <% if !appointment.review && appointment.date_in_past? %>
-                    <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#review-form-<%= appointment.id %>" aria-expanded="false" aria-controls="review-form-<%= appointment.id %>">
-                         Submit Review
-                    </button>
-                    <div class="collapse" id="review-form-<%= appointment.id %>">
-                      <div class="content">
-                        <div class="card m-2" >
-                         <div class="form-group mx-3">
-                          <%= render 'reviews/form', review: Review.new(appointment_id: appointment.id), appointment: Appointment.find(appointment.id) %>
-                         </div>
-                        </div>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-          </div>
-            </div>
+<div class="container-md">
+  <div class="row m-4">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-evenly" data-controller="edit-profile" data-edit-profile-target="card">
+            <% if @pet.photo.present? %>
+              <%= cl_image_tag(@pet.photo.key, class: 'profile-rounded')%>
+            <% else %>
+              <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class="profile-rounded" alt="Profile Image">
+            <% end %>
+          <%= render 'edit_pet', pet: @pet %>
           </div>
         </div>
       </div>
-
-
     </div>
-  </main>
- </div>
+    <div class="col-8">
+      <div class="card" id="apo-card">
+        <h2>All Appointments</h2>
+        <div class="width-100 my-2">
+          <%= form_with url: pet_path(@pet), method: :get, class: "d-flex" do %>
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: " "
+            %>
+            <%= submit_tag "Search", name: "", class: "btn btn-warning" %>
+          <% end %>
+        </div>
+        <%= render 'pet_apo', pet: @pet, pet_apo_old: @pet_apo_old, pet_apo_new: @pet_apo_new %>
+    </div>
+  </div>
+</div>
