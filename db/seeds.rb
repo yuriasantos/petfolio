@@ -107,7 +107,7 @@ sergio_clinic.photo.attach(io: file, filename: "sergio_clinic.png", content_type
 sergio_clinic.save!
 
 file = URI.open('https://f.hubspotusercontent00.net/hubfs/3818705/Smiling%20vet%20examining%20a%20dog%20in%20medical%20office-1.jpeg')
-andrea_clinic = Clinic.new(cnpj: '84766885890910', company_name: 'Healthy Bones Co.', address: 'Rua Humberto Campos - Leblon, RJ', user_id: andrea.id)
+andrea_clinic = Clinic.new(cnpj: '84766885890910', company_name: 'Healthy Bones Co.', address: 'Rua Negreiros Lobato, Lagoa - RJ', user_id: andrea.id)
 andrea_clinic.photo.attach(io: file, filename: "andrea_clinic.png", content_type: "image/png")
 andrea_clinic.save!
 
@@ -117,7 +117,7 @@ chloe_clinic.photo.attach(io: file, filename: "chloe_clinic.png", content_type: 
 chloe_clinic.save!
 
 file = URI.open('https://cottonwoodvc.com/wp-content/uploads/2023/02/Reception-1024x683.jpg')
-rafael_clinic = Clinic.new(cnpj: '84766375890610', company_name: 'Clinicats', address: 'Marques de Sao Vicente - Gavea', user_id: rafael.id)
+rafael_clinic = Clinic.new(cnpj: '84766375890610', company_name: 'Clinicats', address: 'Parque dos Patins, Lagoa', user_id: rafael.id)
 rafael_clinic.photo.attach(io: file, filename: "rafael_clinic.png", content_type: "image/png")
 rafael_clinic.save!
 
