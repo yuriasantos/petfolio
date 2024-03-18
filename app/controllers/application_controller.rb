@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_in_path_for
+  def after_sign_in_path_for(resource)
     if current_user.clinic?
       clinic_path(current_user.clinic)
     elsif current_user.tutor?
