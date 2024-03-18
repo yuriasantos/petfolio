@@ -1,8 +1,5 @@
 class PetsController < ApplicationController
-
-
   before_action :set_pet, only: %i[show destroy edit update]
-
 
   def create
     @tutor = Tutor.find_by(user: current_user)
