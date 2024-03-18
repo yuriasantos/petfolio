@@ -16,15 +16,16 @@ class PetsController < ApplicationController
   end
 
   def show
-    @pet_apo = @pet.appointments
+    @pet_apo = @pet.appointments.order("datetime DESC")
     @appointment = Appointment.new
     @review = Review.new
-
     if params[:query].present?
       @pet_apo = @pet_apo.global_search(params[:query])
+    else
+      @pet_apo = @pet.appointments
     end
-
-
+    @pet_apo_new = @pet_apo.select { |apo| apo.datetime >= Time.now }
+    @pet_apo_old = @pet_apo.select { |apo| apo.datetime < Time.now }
   end
 
   def destroy
