@@ -37,6 +37,7 @@
               <%= user_builder.input :email %>
               <%= user_builder.input :password %>
             <% end %>
+              <%= vet_builder.input :photo, as: :file %>
               <%= vet_builder.submit 'Save', class: ('btn btn-warning') %>
             <% end %>
           </div>
@@ -49,12 +50,16 @@
     <div class="row">
       <div class="col-md-4">
         <div class="d-flex justify-content-center w-100 p-4">
-          <h4><i class="fa-solid fa-stethoscope"></i>&nbsp; Vets of <%= @clinic.company_name %></h4>
+          <h3><i class="fa-solid fa-stethoscope"></i>&nbsp; All Vets from <%= @clinic.company_name %></h3>
         </div>
 
         <% @clinic.vets.each do |vet| %>
             <div class="vet-card shadow-sm">
-              <img src="https://randomuser.me/api/portraits/women/26.jpg" class="img-card" alt="clinic-profile-photo">
+              <% if vet.photo.present? %>
+                <%= cl_image_tag vet.photo.key, crop: :fill, class: "img-card w-25" %>
+              <% else %>
+                <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class= 'img-card w-25' alt="Profile Image">
+              <% end %>
               <div class="info-card">
                 <h5><strong><%= vet.fullname %></strong></h5>
                 <p><%= vet.specialty %> </p>
@@ -78,8 +83,16 @@
       <div class="col-md-8">
           <%= render 'clinic_apo', clinic: @clinic, clinic_apo_old: @clinic_apo_old, clinic_apo_new: @clinic_apo_new %>
           <% if current_user.tutor? %>
-            <%= link_to 'New Appointment', new_clinic_appointment_path(@clinic), class: 'btn btn-warning' %>
+
+
+            <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+              <i class="fa-solid fa-paw"></i> New Appointment from here !
+            </button>
+
+            <%= render 'appointments/form', clinic: @clinic, appointment: @appointment %>
+
           <% end %>
+
       </div>
     </div>
 

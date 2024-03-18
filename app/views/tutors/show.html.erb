@@ -31,16 +31,18 @@
               <p class="text-capitalize"><%= pet.species %> <span> </p>
             </div>
             <button type="button" class="btn btn-primary mt-3 waves-effect w-md waves-light"><%= link_to "Appointments", pet_path(pet.id) %></button>
-            <p><%= link_to "Delete Pet", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Do yo delete him/her?"} %></p>
+
+
+            <% if @tutor.user == current_user %>
+              <%= link_to tutor_path(pet), class: "remove-link", data: {turbo_method: :delete, turbo_confirm: "Do yo delete him/her?"} do %>
+                <i class="fa-regular fa-circle-xmark"></i>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
-
     <% end %>
   </div>
-
-
-
 </div>
 
 <!-- Modal -->

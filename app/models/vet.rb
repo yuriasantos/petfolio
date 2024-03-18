@@ -2,6 +2,7 @@ class Vet < ApplicationRecord
   belongs_to :user
   belongs_to :clinic
   has_many :appointments
+  has_one_attached :photo
 
   SPECIALTIES = ["dermatology", "oncology", "ophthalmology", "clinical pathology"]
 

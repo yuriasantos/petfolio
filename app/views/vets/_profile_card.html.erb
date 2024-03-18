@@ -1,5 +1,10 @@
 <div class="vet-profile p-4" data-controller="edit-profile" data-edit-profile-target="content">
   <div data-edit-profile-target="info">
+      <% if vet.photo.present? %>
+        <%= cl_image_tag vet.photo.key, crop: :fill, class: "img-card w-25"%>
+      <% else %>
+        <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class='img-card w-25' alt="Profile Image">
+      <% end %>
     <div class="d-flex justify-content-between">
       <h3><%= vet.fullname %></h3>
       <div data-action="click->edit-profile#displayForm">

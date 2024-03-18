@@ -13,10 +13,6 @@
   <div class="banner-content ">
     <div class="flex" data-edit-profile-target="info">
 
-      <div data-action="click->edit-profile#displayForm">
-        <i class="fa-solid fa-pen fa-xs ml-2" ></i>
-      </div>
-
       <p> <i class="fa-solid fa-location-dot"></i> <%= @tutor.address %></p>
 
       <p> <i class="fa-solid fa-envelope"></i> <%= @tutor.user.email %></p>
@@ -25,6 +21,10 @@
 
     <button class="btn btn-warning btn-tutor" data-bs-toggle="modal" data-bs-target="#exampleModal"> <%= "Create a Pet Profile"%></button>
 
+  </div>
+
+  <div data-action="click->edit-profile#displayForm">
+    <i class="fa-solid fa-pen fa-xs ml-2" ></i>
   </div>
 
 

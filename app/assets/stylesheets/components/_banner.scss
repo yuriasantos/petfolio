@@ -1,9 +1,14 @@
 .tutor-banner {
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr 2fr;
   border-radius: 15px;
   margin-top: 25px;
   margin-bottom: 45px;
+
+  ul {
+    list-style: none;
+    padding-left: inherit;
+  }
 }
 
 .banner-content {

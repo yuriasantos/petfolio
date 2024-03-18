@@ -12,6 +12,8 @@
           <%= user_builder.input :email %>
           <%= user_builder.input :password %>
         <% end %>
+        <%= f.input :photo, as: :file %>
+
         <%= vet_builder.submit 'Save', class: ('btn btn-warning') %>
       <% end %>
     </div>
