@@ -5,8 +5,9 @@
   <%= f.input vet.fullname %>
   <%= f.input vet.crmv %>
   <%= f.input vet.specialty, collection: Vet::SPECIALTIES %>
+  <%= f.input :photo, as: :file %>
 
-  <div class="actions d-flex justify-content-center"">
+  <div class="actions d-flex justify-content-center">
     <%= f.button :submit, class: "btn btn-warning" %>
   </div>
 <% end %>

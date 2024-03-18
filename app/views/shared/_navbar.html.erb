@@ -27,6 +27,8 @@
               <%= cl_image_tag current_user.tutor.photo.key, crop: :fill, class: "avatar-large" %>
             <% elsif current_user.role == 'clinic' && current_user.clinic&.photo.present? %>
               <%= cl_image_tag current_user.clinic.photo.key, crop: :fill, class: "avatar-large" %>
+            <% elsif current_user.role == 'vet' && current_user.vet&.photo.present? %>
+              <%= cl_image_tag current_user.vet.photo.key, crop: :fill, class: "avatar-large" %>
             <% else %>
               <%= image_tag "https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg", alt: "Standard Image", class: "avatar-large" %>
             <% end %>

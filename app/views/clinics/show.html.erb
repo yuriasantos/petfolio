@@ -37,6 +37,7 @@
               <%= user_builder.input :email %>
               <%= user_builder.input :password %>
             <% end %>
+              <%= vet_builder.input :photo, as: :file %>
               <%= vet_builder.submit 'Save', class: ('btn btn-warning') %>
             <% end %>
           </div>
@@ -54,7 +55,11 @@
 
         <% @clinic.vets.each do |vet| %>
             <div class="vet-card shadow-sm">
-              <img src="https://randomuser.me/api/portraits/women/26.jpg" class="img-card" alt="clinic-profile-photo">
+              <% if vet.photo.present? %>
+                <%= cl_image_tag vet.photo.key, crop: :fill, class: "img-card w-25" %>
+              <% else %>
+                <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" class= 'img-card w-25' alt="Profile Image">
+              <% end %>
               <div class="info-card">
                 <h5><strong><%= vet.fullname %></strong></h5>
                 <p><%= vet.specialty %> </p>
