@@ -9,6 +9,7 @@
 
         <%= simple_form_for([clinic, appointment]) do |f| %>
           <%= f.input :datetime,
+                      label: "Choose a date",
                       as: :string,
                       input_html: { data: { controller: "datepicker" }
                       } %>
