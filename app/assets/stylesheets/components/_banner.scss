@@ -4,6 +4,11 @@
   border-radius: 15px;
   margin-top: 25px;
   margin-bottom: 45px;
+
+  ul {
+    list-style: none;
+    padding-left: inherit;
+  }
 }
 
 .banner-content {
