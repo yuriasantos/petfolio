@@ -34,6 +34,7 @@ class ClinicsController < ApplicationController
     @clinic_apo_old = @clinic_apo.select { |apo| apo.datetime < Time.now }
     @vet = Vet.new
     @user = User.new
+    @appointment = Appointment.new
   end
 
   def new

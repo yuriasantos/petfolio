@@ -78,8 +78,15 @@
       <div class="col-md-8">
           <%= render 'clinic_apo', clinic: @clinic, clinic_apo_old: @clinic_apo_old, clinic_apo_new: @clinic_apo_new %>
           <% if current_user.tutor? %>
-            <%= link_to 'New Appointment', new_clinic_appointment_path(@clinic), class: 'btn btn-warning' %>
+
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+              New Appointment
+            </button>
+
+            <%= render 'appointments/form', clinic: @clinic, appointment: @appointment %>
+
           <% end %>
+
       </div>
     </div>
 
