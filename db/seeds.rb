@@ -62,6 +62,9 @@ chloe.save!
 rafael = User.new(email: 'rafael@clinic.com', password:'rafael123', role: 'clinic')
 rafael.save!
 
+rogerio = User.new(email: 'rogerio@vet.com', password:'rogerio123', role: 'vet')
+rogerio.save!
+
 puts 'Creating Tutors...'
 
 file = URI.open('https://i.pinimg.com/originals/9f/74/53/9f74535608abc523efe3eb37a9a30a54.jpg')
@@ -150,6 +153,11 @@ sirene_vet = Vet.new(fullname: 'Sirene Santos', crmv: '39483743584', user_id: si
 sirene_vet.photo.attach(io: file, filename: "sirene_vet.png", content_type: "image/png")
 sirene_vet.save!
 
+file = URI.open('https://img.freepik.com/free-photo/young-woman-doctor-white-coat-with-phonendoscope-standing-with-big-smile-looking-camera-isolated-blue-background_141793-9841.jpg')
+rogerio_vet = Vet.new(fullname: 'Rogério Silva', crmv: '39483745874', user_id: rogerio.id, specialty: 'oncology', clinic_id: rafael_clinic.id)
+rogerio_vet.photo.attach(io: file, filename: "rogerio_vet.png", content_type: "image/png")
+rogerio_vet.save!
+
 puts 'Creating Appointments...'
 
 appointment_1 = Appointment.new(vet_id: fernando_vet.id, pet_id: lupo.id, datetime: Date.today + 5)
@@ -167,6 +175,15 @@ appointment_4.save!
 appointment_5 = Appointment.new(vet_id: fernando_vet.id, pet_id: tobias.id, datetime: Date.today - 3)
 appointment_5.save!
 
+appointment_6 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: Date.today - 80)
+appointment_6.save!
+
+appointment_7 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: Date.today - 60)
+appointment_7.save!
+
+appointment_8 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: Date.today - 40)
+appointment_8.save!
+
 puts 'Creating Reviews...'
 
 review_1 = Review.new(clinic_rating: 5, content: 'Very good appointment! Lupo was feeling much better!', appointment_id: appointment_2.id)
@@ -175,5 +192,15 @@ review_1.save!
 review_2 = Review.new(clinic_rating: 2, content: 'The vet was a little rude and looked like she was in a hurry', appointment_id: appointment_3.id)
 review_2.save!
 
+puts 'Creating Records...'
+
+record_1 = Record.new(content: 'Lupo occasionally limps after vigorous play or long walks. No history of trauma or accidents. Diagnosed with hip dysplasia at 2 years of age. Regular joint supplements (glucosamine and omega-3 fatty acids). Vaccinations up to date (DHPP, leptospirosis). Recheck in 20 days.', appointment_id: appointment_6.id)
+record_1.save!
+
+record_2 = Record.new(content: 'Lupo continues to experience mild right hind leg lameness after strenuous activity. No significant changes in behavior or appetite. Mild crepitus noted during hip joint palpation. Range of motion slightly improved. Recheck in 20 days. Continue joint supplements (glucosamine and omega-3 fatty acids). Increase exercise moderation to prevent exacerbation.', appointment_id: appointment_7.id)
+record_2.save!
+
+record_3 = Record.new(content: 'All symptoms are back. Maybe it was just a headache after all? I have no idea. Should have been an Engineer like my father wanted. Or joined Le Wagon, to be a great web dev.', appointment_id: appointment_8.id)
+record_3.save!
 
 puts 'Finished!'
