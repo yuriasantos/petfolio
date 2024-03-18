@@ -70,7 +70,7 @@ class VetsController < ApplicationController
   end
 
   def vet_params
-    params.require(:vet).permit(:fullname, :crmv, :specialty, user: %i[email password])
+    params.require(:vet).permit(:fullname, :crmv, :specialty, :photo, user: %i[email password])
   end
 
   def user_params
@@ -83,5 +83,6 @@ class VetsController < ApplicationController
     @vet.specialty = vet_params[:specialty]
     @vet.clinic = Clinic.find_by(user: current_user)
     @vet.user = @user
+    @vet.photo = vet_params[:photo]
   end
 end
