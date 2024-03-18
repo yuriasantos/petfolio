@@ -12,7 +12,7 @@ require 'open-uri'
 
 puts 'Deleting Database...'
 
-
+Record.destroy_all
 Review.destroy_all
 Appointment.destroy_all
 Vet.destroy_all
