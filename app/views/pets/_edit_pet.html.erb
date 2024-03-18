@@ -1,4 +1,4 @@
-<div data-edit-profile-target="content">
+<div class="ms-4" data-edit-profile-target="content">
 
 
 
@@ -10,10 +10,18 @@
       <i class="fa-solid fa-pen fa-xs ml-2" id="edit-pet"></i>
     </div>
 
-    <h4>Name: <%= @pet.name %></h4>
-    <p>Species: <%= @pet.species %></p>
-    <p>Breed: <%= @pet.breed %></p>
-    <p>Birth: <%= @pet.birth %></p>
+    <h4><%= @pet.name %></h4>
+    <p class="breed-icon">
+      <% if @pet.species == "dog" %>
+        <i class="fa-solid fa-dog"></i>
+      <% end %>
+      <% if @pet.species == "cat" %>
+        <i class="fa-solid fa-cat"></i>
+      <% end %>
+    </p>
+    <p>&nbsp;</p>
+      <p>Breed: <%= @pet.breed %></p>
+      <p>Birth: <%= @pet.birth %></p>
   </div>
 
   <%= simple_form_for pet,
