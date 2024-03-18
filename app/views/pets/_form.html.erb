@@ -1,7 +1,7 @@
 <%= simple_form_for pet do |f| %>
   <%= f.input :name %>
-  <%= f.input :species %>
-  <%= f.input :breed %>
+  <%= f.input :species, collection: Pet::SPECIES %>
+  <%= f.input :breed%>
   <%= f.input :birth %>
   <%= f.input :photo, as: :file %>
   <%= f.button :submit, class: ('btn btn-warning') %>
