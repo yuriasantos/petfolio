@@ -1,6 +1,12 @@
 <%= simple_form_for([@clinic, @appointment]) do |f| %>
-  <%= f.input :datetime %>
+  <%= f.input :datetime,
+              as: :string,
+              input_html: { data: { controller: "datepicker" }
+              } %>
+
   <%= f.input :pet_id, collection: current_user.tutor.pets.map { |pet| [pet.name, pet.id] }, prompt: "Select Pet" %>
   <%= f.input :vet_id, collection: clinic.vets.map { |vet| [vet.fullname, vet.id] }, prompt: "Select Vet" %>
   <%= f.button :submit, class: 'btn btn-warning' %>
+
+
 <% end %>
