@@ -9,7 +9,8 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     @clinic = Clinic.find(params[:clinic_id])
     if @appointment.save
-      redirect_to clinic_path(@clinic)
+      redirect_to pet_path(@appointment.pet),
+      notice: "Appointment was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
