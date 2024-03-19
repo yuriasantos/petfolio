@@ -160,28 +160,28 @@ rogerio_vet.save!
 
 puts 'Creating Appointments...'
 
-appointment_1 = Appointment.new(vet_id: fernando_vet.id, pet_id: lupo.id, datetime: Date.today + 5)
+appointment_1 = Appointment.new(vet_id: fernando_vet.id, pet_id: lupo.id, datetime: DateTime.now + 5)
 appointment_1.save!
 
-appointment_2 = Appointment.new(vet_id: fernando_vet.id, pet_id: lupo.id, datetime: Date.today - 10)
+appointment_2 = Appointment.new(vet_id: fernando_vet.id, pet_id: lupo.id, datetime: DateTime.now - 10.2)
 appointment_2.save!
 
-appointment_3 = Appointment.new(vet_id: sirene_vet.id, pet_id: figaro.id, datetime: Date.today - 2)
+appointment_3 = Appointment.new(vet_id: sirene_vet.id, pet_id: figaro.id, datetime: DateTime.now - 2.15)
 appointment_3.save!
 
-appointment_4 = Appointment.new(vet_id: fernando_vet.id, pet_id: lupo.id, datetime: Date.today - 5)
+appointment_4 = Appointment.new(vet_id: fernando_vet.id, pet_id: lupo.id, datetime: DateTime.now - 5.5)
 appointment_4.save!
 
-appointment_5 = Appointment.new(vet_id: fernando_vet.id, pet_id: tobias.id, datetime: Date.today - 3)
+appointment_5 = Appointment.new(vet_id: fernando_vet.id, pet_id: tobias.id, datetime: DateTime.now - 3.3)
 appointment_5.save!
 
-appointment_6 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: Date.today - 80)
+appointment_6 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: DateTime.now - 80.8)
 appointment_6.save!
 
-appointment_7 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: Date.today - 60)
+appointment_7 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: DateTime.now - 60.2)
 appointment_7.save!
 
-appointment_8 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: Date.today - 40)
+appointment_8 = Appointment.new(vet_id: rogerio_vet.id, pet_id: lupo.id, datetime: DateTime.now - 40.1)
 appointment_8.save!
 
 puts 'Creating Reviews...'
